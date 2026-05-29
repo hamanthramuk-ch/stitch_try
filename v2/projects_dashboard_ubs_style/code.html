@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CodeArch AI - Projects Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Public+Sans:wght@400;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "graphite-gray": "#767676",
+                        "inverse-surface": "#2f3131",
+                        "inverse-primary": "#ffb4a8",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#e3e2e2",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "secondary-fixed": "#e2e2e2",
+                        "ink-black": "#000000",
+                        "surface-container-high": "#e8e8e8",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#464747",
+                        "on-primary-fixed-variant": "#930100",
+                        "outline": "#946e68",
+                        "on-secondary-container": "#646464",
+                        "on-surface": "#1a1c1c",
+                        "primary-fixed": "#ffdad4",
+                        "inverse-on-surface": "#f1f1f1",
+                        "on-primary-fixed": "#410000",
+                        "surface-bright": "#f9f9f9",
+                        "surface-variant": "#e2e2e2",
+                        "surface": "#f9f9f9",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "error": "#ba1a1a",
+                        "background": "#f9f9f9",
+                        "on-tertiary-container": "#faf8f8",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#e2e2e2",
+                        "heritage-red": "#E60000",
+                        "secondary": "#5e5e5e",
+                        "tertiary-fixed-dim": "#c7c6c6",
+                        "on-background": "#1a1c1c",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#727272",
+                        "surface-mist": "#F2F2F2",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#5f3f3a",
+                        "outline-variant": "#e9bcb5",
+                        "tertiary": "#595a5a",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#e60000",
+                        "on-primary-container": "#fff7f5",
+                        "primary": "#b70100",
+                        "surface-container": "#eeeeee",
+                        "surface-tint": "#c00000",
+                        "surface-dim": "#dadada",
+                        "canvas-white": "#FFFFFF"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "unit": "8px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "panel-sidebar": "260px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Public Sans"],
+                        "body-sm": ["Inter"],
+                        "code-snippet": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Public Sans"],
+                        "headline-lg": ["Public Sans"],
+                        "body-lg": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "headline-xl": ["Public Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "code-snippet": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f9f9f9;
+            color: #1a1c1c;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .sidebar-item-active {
+            color: #E60000;
+            background-color: #f3f3f3;
+            border-left: 4px solid #E60000;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-hidden bg-background">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-panel-sidebar bg-canvas-white border-r border-surface-container flex flex-col py-8 px-4 z-50">
+<div class="mb-8 px-2">
+<h1 class="font-headline-md text-ink-black font-bold">CodeArch AI</h1>
+<p class="text-graphite-gray text-body-sm">Technical Architect</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 py-3 px-4 rounded transition-colors sidebar-item-active" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-label-bold text-body-md">Projects</span>
+</a>
+<a class="flex items-center gap-3 py-3 px-4 rounded transition-colors text-secondary hover:bg-surface-container-low active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+<span class="font-body-md text-body-md">Workspace</span>
+</a>
+<a class="flex items-center gap-3 py-3 px-4 rounded transition-colors text-secondary hover:bg-surface-container-low active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 py-3 px-4 rounded transition-colors text-secondary hover:bg-surface-container-low active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<button class="mt-8 w-full py-3 px-4 bg-heritage-red text-canvas-white font-bold rounded transition-all hover:brightness-90 active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+        New Project
+    </button>
+<div class="mt-8 flex items-center gap-3 p-2 border-t border-surface-container pt-8">
+<img alt="User Profile" class="w-10 h-10 rounded-full bg-surface-mist border border-surface-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-q7bwqAccaZzx4zpFKbj3NH4Clxqu8baYGMBfR_4aGEjLI2WQiNJWRqDC5DEzD931MsmidebRYpPj4fLhC2psgjz3LQWUeaOMA7Vdt2vougwxvjJCe5S8jJ2qBHymy7Bx9jRJWINgTblZwSqTVw-kVz7vNuf_IwT_7foAdidmLMSA-sbgeuZdtsvfbHTXlF1DGqgygMo6NH8Sgn6CDjUuamLPNNw_xgpV0l4MAGGPVp4ZqZx7m_lL1JOZaKoiv_6uRghfcdq2ZHkV"/>
+<div class="overflow-hidden">
+<p class="text-on-surface font-bold truncate text-sm">Arch_Lead_01</p>
+<p class="text-graphite-gray text-xs truncate">Premium Tier</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-panel-sidebar w-[calc(100%-260px)] h-screen flex flex-col relative bg-surface-bright">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center h-16 px-10 bg-canvas-white border-b border-surface-container w-full">
+<div class="flex items-center gap-10">
+<nav class="flex gap-6">
+<a class="text-graphite-gray hover:text-heritage-red transition-all font-body-sm text-sm" href="#">Documentation</a>
+<a class="text-graphite-gray hover:text-heritage-red transition-all font-body-sm text-sm" href="#">Support</a>
+<a class="text-graphite-gray hover:text-heritage-red transition-all font-body-sm text-sm" href="#">API</a>
+</nav>
+</div>
+<div class="flex items-center gap-8 flex-1 justify-end">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-graphite-gray text-sm" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border border-surface-container rounded py-1.5 pl-10 pr-4 text-body-sm focus:ring-1 focus:ring-heritage-red focus:outline-none transition-all placeholder:text-graphite-gray" placeholder="Search projects or snapshot IDs..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-graphite-gray hover:text-heritage-red transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-graphite-gray hover:text-heritage-red transition-all">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<img alt="Admin Avatar" class="w-8 h-8 rounded-full border border-surface-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADUV2w_72c7ZlzLvoO5q2xEiGiIdf0gvztZ7sd4VmeVLs7EdVShQiWzJIne93mGrQO55_N3pk80kyEyldAus52PIcjHQe7RQRly8qwNtgqnUKrd_-zUkyk9Sru6Vxb9TQuSyDfXm3ryDXVvqP3-hICewUDt1p5COTyJJ-ykDtnitPcPox1pGJRFtM2a0bKOd03Ea9aDbPBLa2w9O4QyoAWDKDHzacoD4Q_i_T4HCc5uB_0GKdxpo2oi2vk2Jd4zq01ksRkYfem0klD"/>
+</div>
+</div>
+</header>
+<!-- Scrollable Dashboard Content -->
+<div class="flex-1 overflow-y-auto p-10">
+<!-- Hero / Header Section -->
+<div class="mb-10 flex items-end justify-between">
+<div>
+<h2 class="font-headline-lg text-ink-black">Projects Dashboard</h2>
+<p class="text-graphite-gray font-body-lg">Analyze, migrate, and orchestrate technical debt across your SAS and Python stack.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-canvas-white border border-surface-container rounded text-sm hover:bg-surface-mist transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+                    Filter
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-canvas-white border border-surface-container rounded text-sm hover:bg-surface-mist transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="sort">sort</span>
+                    Latest
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="bento-grid">
+<!-- CTA Card: Create New Project -->
+<div class="col-span-12 md:col-span-4 bg-canvas-white border border-heritage-red/20 rounded shadow-sm p-8 flex flex-col justify-between hover:border-heritage-red transition-all duration-300 group cursor-pointer">
+<div>
+<div class="w-12 h-12 bg-heritage-red rounded flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-canvas-white" data-icon="add_box">add_box</span>
+</div>
+<h3 class="font-headline-md text-ink-black mb-2">Initiate Migration</h3>
+<p class="text-graphite-gray font-body-md">Connect your repository or upload SAS macros for deep AST analysis and conversion.</p>
+</div>
+<div class="mt-8 flex items-center gap-2 text-heritage-red font-bold text-sm">
+<span>New Project Analysis</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Featured Project Card -->
+<div class="col-span-12 md:col-span-8 bg-canvas-white border border-surface-container rounded shadow-sm p-8 flex gap-8 relative">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 bg-heritage-red text-canvas-white text-[10px] font-bold rounded uppercase tracking-wider">Live Analysis</span>
+<span class="text-graphite-gray text-xs">• Updated 2 mins ago</span>
+</div>
+<h3 class="font-headline-md text-ink-black mb-4">Financial_Risk_Model_v4</h3>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="px-3 py-1 bg-surface-mist rounded text-xs border border-surface-container text-ink-black">SAS Macro</span>
+<span class="px-3 py-1 bg-surface-mist rounded text-xs border border-surface-container text-ink-black">Python 3.11</span>
+<span class="px-3 py-1 bg-surface-mist rounded text-xs border border-surface-container text-ink-black">SQL</span>
+</div>
+<div class="flex items-center gap-12">
+<div>
+<p class="text-graphite-gray text-[10px] mb-1 uppercase font-bold">Complexity</p>
+<p class="text-2xl font-bold text-ink-black">8.4 / 10</p>
+</div>
+<div>
+<p class="text-graphite-gray text-[10px] mb-1 uppercase font-bold">Dependencies</p>
+<p class="text-2xl font-bold text-ink-black">142 Items</p>
+</div>
+<div>
+<p class="text-graphite-gray text-[10px] mb-1 uppercase font-bold">Optimization</p>
+<p class="text-2xl font-bold text-heritage-red">92% Target</p>
+</div>
+</div>
+</div>
+<div class="w-1/3 bg-surface-mist rounded border border-surface-container p-4 hidden lg:block overflow-hidden">
+<div class="font-code-snippet text-xs space-y-1 text-ink-black/80">
+<p><span class="text-heritage-red font-bold">PROC SQL</span>;</p>
+<p class="pl-4">CREATE TABLE risk_data AS</p>
+<p class="pl-4">SELECT * FROM master_ledger</p>
+<p class="pl-4">WHERE <span class="text-graphite-gray">exposure</span> &gt; 0.05;</p>
+<p><span class="text-heritage-red font-bold">QUIT</span>;</p>
+<div class="h-px bg-surface-container my-3"></div>
+<p><span class="text-heritage-red">def</span> analyze_risk(data):</p>
+<p class="pl-4">df = pd.read_sql(data)</p>
+<p class="pl-4"><span class="text-graphite-gray italic">return</span> df.query(<span class="text-heritage-red">"exposure &gt; 0.05"</span>)</p>
+</div>
+</div>
+</div>
+<!-- Project Grid Items -->
+<div class="col-span-12 md:col-span-4 bg-canvas-white border border-surface-container rounded shadow-sm p-6 flex flex-col hover:border-heritage-red transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-surface-mist rounded border border-surface-container">
+<span class="material-symbols-outlined text-heritage-red" data-icon="database">database</span>
+</div>
+<span class="px-3 py-1 bg-surface-container text-ink-black text-xs rounded-full font-bold">Completed</span>
+</div>
+<h4 class="font-bold text-ink-black mb-1">DataLake_ETL_Sync</h4>
+<p class="text-graphite-gray text-xs mb-6">SQLite Snapshot ID: <span class="font-mono">#SL-2910</span></p>
+<div class="mt-auto flex items-center justify-between border-t border-surface-container pt-4">
+<div class="flex gap-1">
+<span class="text-[10px] bg-surface-mist px-2 py-0.5 rounded border border-surface-container">SAS</span>
+<span class="text-[10px] bg-surface-mist px-2 py-0.5 rounded border border-surface-container">Py</span>
+</div>
+<p class="text-graphite-gray text-[10px] font-bold">OCT 24, 2023</p>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 bg-canvas-white border border-surface-container rounded shadow-sm p-6 flex flex-col hover:border-heritage-red transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-surface-mist rounded border border-surface-container">
+<span class="material-symbols-outlined text-heritage-red" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<span class="px-3 py-1 bg-surface-container text-ink-black text-xs rounded-full font-bold">Snapshot Saved</span>
+</div>
+<h4 class="font-bold text-ink-black mb-1">Legacy_GL_Reporter</h4>
+<p class="text-graphite-gray text-xs mb-6">SQLite Snapshot ID: <span class="font-mono">#SL-2844</span></p>
+<div class="mt-auto flex items-center justify-between border-t border-surface-container pt-4">
+<div class="flex gap-1">
+<span class="text-[10px] bg-surface-mist px-2 py-0.5 rounded border border-surface-container">SAS</span>
+</div>
+<p class="text-graphite-gray text-[10px] font-bold">OCT 22, 2023</p>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 bg-canvas-white border border-surface-container rounded shadow-sm p-6 flex flex-col hover:border-heritage-red transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-surface-mist rounded border border-surface-container">
+<span class="material-symbols-outlined text-heritage-red" data-icon="monitoring">monitoring</span>
+</div>
+<span class="px-3 py-1 bg-error-container text-error text-xs rounded-full font-bold">Flagged Issues</span>
+</div>
+<h4 class="font-bold text-ink-black mb-1">Customer_Churn_Model</h4>
+<p class="text-graphite-gray text-xs mb-6">SQLite Snapshot ID: <span class="font-mono">#SL-2701</span></p>
+<div class="mt-auto flex items-center justify-between border-t border-surface-container pt-4">
+<div class="flex gap-1">
+<span class="text-[10px] bg-surface-mist px-2 py-0.5 rounded border border-surface-container">Python</span>
+<span class="text-[10px] bg-surface-mist px-2 py-0.5 rounded border border-surface-container">R</span>
+</div>
+<p class="text-graphite-gray text-[10px] font-bold">OCT 19, 2023</p>
+</div>
+</div>
+<!-- Detailed Project Row -->
+<div class="col-span-12 overflow-x-auto mt-4 bg-canvas-white border border-surface-container rounded shadow-sm">
+<table class="w-full border-collapse">
+<thead>
+<tr class="text-left border-b border-surface-container bg-surface-mist">
+<th class="py-4 px-6 text-[10px] text-graphite-gray font-bold uppercase tracking-widest">Project Name</th>
+<th class="py-4 px-6 text-[10px] text-graphite-gray font-bold uppercase tracking-widest">Technology</th>
+<th class="py-4 px-6 text-[10px] text-graphite-gray font-bold uppercase tracking-widest">Last Analysis</th>
+<th class="py-4 px-6 text-[10px] text-graphite-gray font-bold uppercase tracking-widest">Status</th>
+<th class="py-4 px-6 text-[10px] text-graphite-gray font-bold uppercase tracking-widest text-right">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-surface-container hover:bg-surface-bright transition-colors group">
+<td class="py-5 px-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-graphite-gray text-sm" data-icon="insert_drive_file">insert_drive_file</span>
+<span class="font-bold text-ink-black">inventory_optimization_prod</span>
+</div>
+</td>
+<td class="py-5 px-6">
+<div class="flex gap-2">
+<span class="px-2 py-0.5 bg-surface-mist rounded text-xs border border-surface-container">Python</span>
+<span class="px-2 py-0.5 bg-surface-mist rounded text-xs border border-surface-container">Snowflake</span>
+</div>
+</td>
+<td class="py-5 px-6 text-graphite-gray text-sm font-medium">2 days ago</td>
+<td class="py-5 px-6">
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-600"></span>
+<span class="text-sm font-bold">Stable</span>
+</span>
+</td>
+<td class="py-5 px-6 text-right">
+<button class="material-symbols-outlined text-graphite-gray hover:text-heritage-red transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+<tr class="border-b border-surface-container hover:bg-surface-bright transition-colors group">
+<td class="py-5 px-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-graphite-gray text-sm" data-icon="folder_zip">folder_zip</span>
+<span class="font-bold text-ink-black">legacy_sas_migration_batch_02</span>
+</div>
+</td>
+<td class="py-5 px-6">
+<div class="flex gap-2">
+<span class="px-2 py-0.5 bg-surface-mist rounded text-xs border border-surface-container">SAS</span>
+<span class="px-2 py-0.5 bg-surface-mist rounded text-xs border border-surface-container">COBOL</span>
+</div>
+</td>
+<td class="py-5 px-6 text-graphite-gray text-sm font-medium">5 days ago</td>
+<td class="py-5 px-6">
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-graphite-gray"></span>
+<span class="text-sm font-bold">Archived</span>
+</span>
+</td>
+<td class="py-5 px-6 text-right">
+<button class="material-symbols-outlined text-graphite-gray hover:text-heritage-red transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed bottom-10 right-10 w-14 h-14 bg-heritage-red text-canvas-white rounded-full shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40 group">
+<span class="material-symbols-outlined text-2xl font-bold" data-icon="bolt">bolt</span>
+<span class="absolute right-full mr-4 px-4 py-2 bg-ink-black text-canvas-white rounded text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">QUICK AST ANALYSIS</span>
+</button>
+<script>
+    // Micro-interactions for clean light theme
+    document.querySelectorAll('.bento-grid > div').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            if (!card.classList.contains('col-span-12')) {
+                card.style.transform = 'translateY(-4px)';
+                card.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
+            }
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
+        });
+    });
+
+    const searchInput = document.querySelector('input[type="text"]');
+    searchInput.addEventListener('focus', () => {
+        searchInput.parentElement.style.maxWidth = '600px';
+        searchInput.classList.add('border-heritage-red');
+    });
+    searchInput.addEventListener('blur', () => {
+        searchInput.parentElement.style.maxWidth = '448px';
+        searchInput.classList.remove('border-heritage-red');
+    });
+</script>
+</body></html>

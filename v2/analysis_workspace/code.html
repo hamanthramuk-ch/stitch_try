@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@400&amp;family=Geist:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#131b2e",
+                    "inverse-surface": "#dae2fd",
+                    "surface-container-lowest": "#060e20",
+                    "secondary-container": "#571bc1",
+                    "error-container": "#93000a",
+                    "inverse-primary": "#005ac2",
+                    "on-background": "#dae2fd",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "secondary": "#d0bcff",
+                    "on-tertiary": "#003824",
+                    "secondary-fixed-dim": "#d0bcff",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-error-container": "#ffdad6",
+                    "tertiary-fixed-variant": "#005236",
+                    "on-primary": "#002e6a",
+                    "on-secondary-fixed": "#23005c",
+                    "secondary-fixed": "#e9ddff",
+                    "tertiary": "#4edea3",
+                    "outline-variant": "#424754",
+                    "on-secondary": "#3c0091",
+                    "surface-container-highest": "#2d3449",
+                    "primary-container": "#4d8eff",
+                    "on-error": "#690005",
+                    "surface-container-high": "#222a3d",
+                    "on-primary-container": "#00285d",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-primary-fixed-variant": "#004395",
+                    "on-surface": "#dae2fd",
+                    "on-secondary-container": "#c4abff",
+                    "outline": "#8c909f",
+                    "primary-fixed": "#d8e2ff",
+                    "primary": "#adc6ff",
+                    "inverse-on-surface": "#283044",
+                    "surface-bright": "#31394d",
+                    "on-primary-fixed": "#001a42",
+                    "surface-tint": "#adc6ff",
+                    "surface-container": "#171f33",
+                    "surface-variant": "#2d3449",
+                    "surface-dim": "#0b1326",
+                    "on-secondary-fixed-variant": "#5516be",
+                    "surface": "#0b1326",
+                    "on-tertiary-fixed": "#002113",
+                    "error": "#ffb4ab",
+                    "background": "#0b1326",
+                    "on-tertiary-container": "#00311f",
+                    "primary-fixed-dim": "#adc6ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "xl": "32px",
+                    "margin-mobile": "16px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "gutter": "16px",
+                    "base": "4px",
+                    "panel-sidebar": "260px",
+                    "margin-desktop": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Geist"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Geist"],
+                    "label-caps": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Geist"],
+                    "code-md": ["JetBrains Mono"],
+                    "code-sm": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "code-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "code-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+            font-size: 1.25rem;
+        }
+        .code-container {
+            counter-reset: line;
+        }
+        .code-line::before {
+            counter-increment: line;
+            content: counter(line);
+            display: inline-block;
+            width: 3rem;
+            margin-right: 1rem;
+            text-align: right;
+            color: #475569;
+            user-select: none;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0b1326;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        .ast-line {
+            position: relative;
+        }
+        .ast-line::after {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 10px;
+            width: 8px;
+            height: 1px;
+            background: #424754;
+        }
+        .ast-line::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background: #424754;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md overflow-hidden h-screen flex">
+<!-- SideNavBar (Shared Component) -->
+<aside class="flex flex-col h-full py-lg px-md bg-surface-container-low border-r border-outline-variant w-panel-sidebar fixed left-0 top-0 z-20">
+<div class="mb-xl flex items-center gap-sm">
+<div class="w-8 h-8 bg-primary-container rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container">architecture</span>
+</div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-surface">CodeArch AI</h1>
+</div>
+<button class="mb-lg w-full flex items-center justify-center gap-xs py-sm bg-secondary-container text-on-secondary-container rounded-lg font-bold hover:opacity-90 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">add</span>
+<span>New Project</span>
+</button>
+<nav class="flex-1 space-y-xs">
+<a class="flex items-center gap-md px-md py-sm rounded transition-colors duration-200 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-body-md text-body-md">Projects</span>
+</a>
+<!-- Active State Logic: Mapping to Workspace -->
+<a class="flex items-center gap-md px-md py-sm rounded transition-colors duration-200 text-primary font-bold border-r-2 border-primary bg-secondary-container/10" href="#">
+<span class="material-symbols-outlined">terminal</span>
+<span class="font-body-md text-body-md">Workspace</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded transition-colors duration-200 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded transition-colors duration-200 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-lg border-t border-outline-variant">
+<div class="flex items-center gap-md">
+<img alt="User Profile" class="w-10 h-10 rounded-full" data-alt="A professional headshot of a technical software architect in a modern office environment. The individual is wearing professional casual attire, looking confident. The lighting is soft and natural, emphasizing a high-end corporate aesthetic with a slate and deep blue color palette to match the UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxb2aWvM5haEQc56cdjcZElRnVUvFyPt49O5swju64jvzZoqkhkdK9mnTb-IhHGUSJ5D_Fe1XqVoCrY2GW59qEoINv9fhWS8fZ7tL_A7KEThQ5mMcwx_YYBPZCA5d38Nt_0FnTRLrYnapo-DWYTTvuku31vXJnNel4qWiXeiWSAxnwQnsGohASk7XoEVnnLBfyU4sIAI29Rwo_FtU1C1gRhwst3Da-34Ar14umi2wKPQwYYeKeJRvPt1xaFqJKH0VeluA-emIn8xBP"/>
+<div>
+<div class="font-bold text-on-surface">Alex Rivera</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">Technical Architect</div>
+</div>
+</div>
+</div>
+</aside>
+<div class="flex-1 ml-panel-sidebar flex flex-col min-w-0">
+<!-- TopAppBar (Shared Component) -->
+<header class="flex justify-between items-center h-16 px-xl bg-surface-container-lowest border-b border-outline-variant w-full">
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">data_object</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Analysis Workspace</span>
+</div>
+<div class="h-6 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-sm bg-surface-container-high px-md py-xs rounded border border-outline-variant">
+<span class="text-body-sm font-body-sm text-primary font-bold">Migration_v2_Beta</span>
+<span class="material-symbols-outlined text-body-sm">expand_more</span>
+</div>
+</div>
+<div class="flex items-center gap-xl flex-1 justify-end">
+<div class="hidden md:flex gap-lg">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-all duration-200" href="#">Documentation</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-all duration-200" href="#">Support</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-all duration-200" href="#">API</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm text-on-surface-variant hover:text-primary transition-all active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="bg-primary text-on-primary px-md py-sm rounded font-bold text-body-sm flex items-center gap-xs hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">save</span>
+                        Save Snapshot
+                    </button>
+</div>
+</div>
+</header>
+<!-- Main Content Area: Three Panels -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Panel: File Explorer & AST -->
+<section class="w-72 bg-surface-container border-r border-outline-variant flex flex-col">
+<div class="flex items-center justify-between p-md border-b border-outline-variant">
+<span class="font-label-caps text-label-caps text-outline uppercase">Explorer</span>
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-sm">
+<!-- File Explorer -->
+<div class="mb-lg">
+<div class="flex items-center gap-sm py-xs px-sm hover:bg-surface-container-highest rounded cursor-pointer group">
+<span class="material-symbols-outlined text-amber-500">folder_open</span>
+<span class="text-body-sm font-body-sm font-bold">legacy_sas_code</span>
+</div>
+<div class="ml-4 space-y-1 mt-1">
+<div class="flex items-center gap-sm py-xs px-sm hover:bg-surface-container-highest rounded cursor-pointer bg-primary-container/10 border-l-2 border-primary">
+<span class="material-symbols-outlined text-primary">description</span>
+<span class="text-body-sm font-body-sm text-primary">data_proc.sas</span>
+</div>
+<div class="flex items-center gap-sm py-xs px-sm hover:bg-surface-container-highest rounded cursor-pointer opacity-70">
+<span class="material-symbols-outlined">description</span>
+<span class="text-body-sm font-body-sm">report_gen.sas</span>
+</div>
+</div>
+</div>
+<!-- AST Tree structure -->
+<div>
+<div class="flex items-center gap-sm py-xs px-sm text-outline border-b border-outline-variant mb-2">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="text-label-caps font-label-caps uppercase">AST Visualization</span>
+</div>
+<div class="ml-4 space-y-2 mt-2">
+<div class="text-body-sm font-body-sm text-tertiary flex items-center gap-xs">
+<span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
+<span>Program</span>
+</div>
+<div class="ml-4 space-y-2 border-l border-outline-variant pl-4">
+<div class="ast-line text-body-sm font-body-sm text-on-surface-variant">
+<span class="text-secondary">ProcStep</span>: SQL
+                                </div>
+<div class="ast-line text-body-sm font-body-sm text-on-surface-variant">
+<span class="text-secondary">DataStep</span>: Main
+                                    <div class="ml-4 mt-2 space-y-1">
+<div class="ast-line text-body-sm font-body-sm text-outline-variant">AssignmentStatement</div>
+<div class="ast-line text-body-sm font-body-sm text-outline-variant">ConditionalBlock</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Center Panel: Code Editor -->
+<section class="flex-1 flex flex-col bg-surface overflow-hidden">
+<!-- Tab Header -->
+<div class="flex items-center bg-surface-container-lowest border-b border-outline-variant">
+<div class="flex items-center px-lg py-sm border-r border-outline-variant bg-surface border-t-2 border-primary text-primary font-bold">
+<span class="text-body-sm font-body-sm">Source Code</span>
+</div>
+<div class="flex items-center px-lg py-sm border-r border-outline-variant text-on-surface-variant hover:bg-surface-container-highest transition-colors cursor-pointer">
+<span class="text-body-sm font-body-sm">AST Analysis</span>
+</div>
+<div class="flex items-center px-lg py-sm border-r border-outline-variant text-on-surface-variant hover:bg-surface-container-highest transition-colors cursor-pointer">
+<span class="text-body-sm font-body-sm">Design Patterns</span>
+</div>
+</div>
+<!-- Code Content -->
+<div class="flex-1 overflow-auto custom-scrollbar bg-surface-dim p-lg code-container font-code-md text-code-md">
+<div class="code-line"><span class="text-secondary">PROC SQL</span>;</div>
+<div class="code-line">    <span class="text-primary">CREATE TABLE</span> WORK.SUMMARY AS</div>
+<div class="code-line">    <span class="text-primary">SELECT</span> customer_id, <span class="text-tertiary">SUM</span>(order_value) <span class="text-primary">AS</span> total_spend</div>
+<div class="code-line">    <span class="text-primary">FROM</span> raw_data.transactions</div>
+<div class="code-line">    <span class="text-primary">GROUP BY</span> customer_id;</div>
+<div class="code-line"><span class="text-secondary">QUIT</span>;</div>
+<div class="code-line"></div>
+<div class="code-line"><span class="text-secondary">DATA</span> filtered_results;</div>
+<div class="code-line">    <span class="text-primary">SET</span> WORK.SUMMARY;</div>
+<div class="code-line">    <span class="text-tertiary">IF</span> total_spend &gt; <span class="text-amber-400">1000</span> <span class="text-tertiary">THEN</span> <span class="text-primary">OUTPUT</span>;</div>
+<div class="code-line"><span class="text-secondary">RUN</span>;</div>
+</div>
+<!-- Status Bar -->
+<div class="h-8 bg-surface-container-low border-t border-outline-variant px-md flex items-center justify-between text-body-sm font-body-sm text-outline">
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">sync</span>
+<span>Live Analysis: Active</span>
+</div>
+<div>UTF-8</div>
+</div>
+<div class="flex items-center gap-lg">
+<span>Ln 12, Col 42</span>
+<span class="text-tertiary">SAS Syntax</span>
+</div>
+</div>
+</section>
+<!-- Right Panel: AI & Migration -->
+<section class="w-96 bg-surface-container border-l border-outline-variant flex flex-col">
+<div class="p-md border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary">auto_awesome</span>
+<span class="font-bold">AI Assistant</span>
+</div>
+<div class="flex gap-xs">
+<button class="p-xs hover:bg-surface-container-highest rounded"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-md space-y-lg">
+<!-- AI Suggestion Card -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-md">
+<div class="flex items-start gap-sm mb-md">
+<div class="p-xs bg-primary/20 rounded">
+<span class="material-symbols-outlined text-primary">lightbulb</span>
+</div>
+<div>
+<h4 class="font-bold text-body-md">Migration Suggestion</h4>
+<p class="text-body-sm text-on-surface-variant mt-1">Found a legacy SAS block that can be converted to modern Pandas/Python.</p>
+</div>
+</div>
+<button class="w-full py-sm bg-primary/10 border border-primary/30 text-primary rounded font-bold hover:bg-primary/20 transition-all flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined">transform</span>
+                            Convert to Python
+                        </button>
+</div>
+<!-- Chat History -->
+<div class="space-y-md">
+<div class="flex justify-end">
+<div class="bg-primary-container text-on-primary-container p-sm rounded-lg rounded-tr-none max-w-[85%] text-body-sm shadow-sm">
+                                Explain the logic in the DATA step above.
+                            </div>
+</div>
+<div class="flex justify-start">
+<div class="bg-surface-container-highest text-on-surface p-sm rounded-lg rounded-tl-none max-w-[85%] text-body-sm border border-outline-variant">
+<p>This block filters the <code class="bg-surface-dim px-1 rounded text-secondary">WORK.SUMMARY</code> table. It retains only records where <code class="bg-surface-dim px-1 rounded text-secondary">total_spend</code> exceeds 1,000.</p>
+<p class="mt-2 text-xs text-outline">Optimized for: Memory Efficiency</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-md border-t border-outline-variant bg-surface-container-high">
+<div class="relative">
+<textarea class="w-full bg-surface-dim border border-outline-variant rounded-lg p-md pr-xl text-body-sm focus:ring-2 focus:ring-primary focus:outline-none resize-none custom-scrollbar" placeholder="Ask CodeArch AI..." rows="3"></textarea>
+<button class="absolute bottom-3 right-3 text-primary hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<div class="flex gap-sm mt-sm">
+<button class="flex-1 py-xs bg-surface-container border border-outline-variant rounded text-body-sm hover:bg-surface-container-highest transition-colors">Explain Logic</button>
+<button class="flex-1 py-xs bg-surface-container border border-outline-variant rounded text-body-sm hover:bg-surface-container-highest transition-colors">Find Vulnerabilities</button>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarLinks = document.querySelectorAll('aside nav a');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    sidebarLinks.forEach(l => {
+                        l.classList.remove('text-primary', 'font-bold', 'border-r-2', 'border-primary', 'bg-secondary-container/10');
+                        l.classList.add('text-on-surface-variant', 'hover:text-on-surface', 'hover:bg-surface-container-highest');
+                    });
+                    link.classList.add('text-primary', 'font-bold', 'border-r-2', 'border-primary', 'bg-secondary-container/10');
+                    link.classList.remove('text-on-surface-variant', 'hover:text-on-surface', 'hover:bg-surface-container-highest');
+                });
+            });
+
+            // Tab logic
+            const tabs = document.querySelectorAll('[class*="cursor-pointer"]');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Visual feedback for tabs would go here
+                });
+            });
+        });
+    </script>
+</body></html>

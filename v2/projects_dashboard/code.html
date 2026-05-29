@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CodeArch AI - Projects Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#131b2e",
+                        "inverse-surface": "#dae2fd",
+                        "surface-container-lowest": "#060e20",
+                        "secondary-container": "#571bc1",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#005ac2",
+                        "on-background": "#dae2fd",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "secondary": "#d0bcff",
+                        "on-tertiary": "#003824",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-container": "#00a572",
+                        "on-surface-variant": "#c2c6d6",
+                        "on-primary": "#002e6a",
+                        "on-secondary-fixed": "#23005c",
+                        "secondary-fixed": "#e9ddff",
+                        "tertiary": "#4edea3",
+                        "outline-variant": "#424754",
+                        "on-secondary": "#3c0091",
+                        "surface-container-highest": "#2d3449",
+                        "primary-container": "#4d8eff",
+                        "on-error": "#690005",
+                        "surface-container-high": "#222a3d",
+                        "on-primary-container": "#00285d",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-surface": "#dae2fd",
+                        "on-secondary-container": "#c4abff",
+                        "outline": "#8c909f",
+                        "primary-fixed": "#d8e2ff",
+                        "primary": "#adc6ff",
+                        "inverse-on-surface": "#283044",
+                        "surface-bright": "#31394d",
+                        "on-primary-fixed": "#001a42",
+                        "surface-tint": "#adc6ff",
+                        "surface-container": "#171f33",
+                        "surface-variant": "#2d3449",
+                        "surface-dim": "#0b1326",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "surface": "#0b1326",
+                        "on-tertiary-fixed": "#002113",
+                        "error": "#ffb4ab",
+                        "background": "#0b1326",
+                        "on-tertiary-container": "#00311f",
+                        "primary-fixed-dim": "#adc6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xl": "32px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "panel-sidebar": "260px",
+                        "margin-desktop": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Geist"],
+                        "label-caps": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Geist"],
+                        "code-md": ["JetBrains Mono"],
+                        "code-sm": ["JetBrains Mono"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px;
+        }
+        .code-glow {
+            box-shadow: 0 0 20px rgba(77, 142, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-panel-sidebar bg-surface-container-low border-r border-outline-variant flex flex-col py-lg px-md z-50">
+<div class="mb-xl">
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-surface">CodeArch AI</h1>
+<p class="text-on-surface-variant text-body-sm font-body-sm">Technical Architect</p>
+</div>
+<nav class="flex-1 space-y-base">
+<a class="flex items-center gap-md py-sm px-md rounded-lg transition-colors duration-200 text-primary font-bold border-r-2 border-primary bg-secondary-container/10 active:opacity-80 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-body-md text-body-md">Projects</span>
+</a>
+<a class="flex items-center gap-md py-sm px-md rounded-lg transition-colors duration-200 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest active:opacity-80 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+<span class="font-body-md text-body-md">Workspace</span>
+</a>
+<a class="flex items-center gap-md py-sm px-md rounded-lg transition-colors duration-200 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest active:opacity-80 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-md py-sm px-md rounded-lg transition-colors duration-200 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest active:opacity-80 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<button class="mt-xl w-full py-md px-lg bg-primary-container text-on-primary-container font-bold rounded-xl transition-all duration-200 hover:brightness-110 active:scale-95 flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+            New Project
+        </button>
+<div class="mt-xl flex items-center gap-md p-sm border-t border-outline-variant pt-lg">
+<img alt="User Profile" class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-q7bwqAccaZzx4zpFKbj3NH4Clxqu8baYGMBfR_4aGEjLI2WQiNJWRqDC5DEzD931MsmidebRYpPj4fLhC2psgjz3LQWUeaOMA7Vdt2vougwxvjJCe5S8jJ2qBHymy7Bx9jRJWINgTblZwSqTVw-kVz7vNuf_IwT_7foAdidmLMSA-sbgeuZdtsvfbHTXlF1DGqgygMo6NH8Sgn6CDjUuamLPNNw_xgpV0l4MAGGPVp4ZqZx7m_lL1JOZaKoiv_6uRghfcdq2ZHkV"/>
+<div class="overflow-hidden">
+<p class="text-on-surface font-bold truncate">Arch_Lead_01</p>
+<p class="text-on-surface-variant text-body-sm truncate">Premium Tier</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-panel-sidebar w-[calc(100%-260px)] h-screen flex flex-col relative">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center h-16 px-xl bg-surface-container-lowest border-b border-outline-variant w-full">
+<div class="flex items-center gap-xl">
+<span class="hidden">CodeArch AI</span>
+<nav class="flex gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-body-sm text-body-sm" href="#">Documentation</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-body-sm text-body-sm" href="#">Support</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-body-sm text-body-sm" href="#">API</a>
+</nav>
+</div>
+<div class="flex items-center gap-xl flex-1 justify-end">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full bg-surface-container-high border border-outline-variant rounded-full py-xs pl-xl pr-md text-body-sm focus:ring-2 focus:ring-primary focus:outline-none transition-all" placeholder="Search projects or snapshot IDs..." type="text"/>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<img alt="Admin Avatar" class="w-8 h-8 rounded-full border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADUV2w_72c7ZlzLvoO5q2xEiGiIdf0gvztZ7sd4VmeVLs7EdVShQiWzJIne93mGrQO55_N3pk80kyEyldAus52PIcjHQe7RQRly8qwNtgqnUKrd_-zUkyk9Sru6Vxb9TQuSyDfXm3ryDXVvqP3-hICewUDt1p5COTyJJ-ykDtnitPcPox1pGJRFtM2a0bKOd03Ea9aDbPBLa2w9O4QyoAWDKDHzacoD4Q_i_T4HCc5uB_0GKdxpo2oi2vk2Jd4zq01ksRkYfem0klD"/>
+</div>
+</div>
+</header>
+<!-- Scrollable Dashboard Content -->
+<div class="flex-1 overflow-y-auto p-xl">
+<!-- Hero / Header Section -->
+<div class="mb-xl flex items-end justify-between">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Projects Dashboard</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg">Analyze, migrate, and orchestrate technical debt across your SAS and Python stack.</p>
+</div>
+<div class="flex gap-md">
+<button class="flex items-center gap-xs px-md py-sm bg-surface-container-high border border-outline-variant rounded-lg hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+                        Filter
+                    </button>
+<button class="flex items-center gap-xs px-md py-sm bg-surface-container-high border border-outline-variant rounded-lg hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined" data-icon="sort">sort</span>
+                        Latest
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="bento-grid">
+<!-- CTA Card: Create New Project -->
+<div class="col-span-12 md:col-span-4 bg-primary-container/10 border border-primary/30 rounded-xl p-xl flex flex-col justify-between hover:bg-primary-container/20 transition-all duration-300 group cursor-pointer relative overflow-hidden">
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-primary/10 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+<div>
+<div class="w-12 h-12 bg-primary-container rounded-lg flex items-center justify-center mb-lg">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="add_box">add_box</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-sm">Initiate Migration</h3>
+<p class="text-on-surface-variant font-body-md text-body-md">Connect your repository or upload SAS macros for deep AST analysis and conversion.</p>
+</div>
+<div class="mt-xl flex items-center gap-sm text-primary font-bold">
+<span>New Project Analysis</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Featured Project Card -->
+<div class="col-span-12 md:col-span-8 bg-surface-container-high border border-outline-variant rounded-xl p-xl flex gap-xl relative overflow-hidden">
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-sm">
+<span class="px-sm py-xs bg-tertiary-container/20 text-tertiary text-label-caps rounded font-label-caps">LIVE ANALYSIS</span>
+<span class="text-on-surface-variant text-body-sm">• Updated 2 mins ago</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">Financial_Risk_Model_v4</h3>
+<div class="flex flex-wrap gap-sm mb-lg">
+<span class="px-md py-xs bg-surface-container-highest rounded-full text-body-sm border border-outline-variant">SAS Macro</span>
+<span class="px-md py-xs bg-surface-container-highest rounded-full text-body-sm border border-outline-variant">Python 3.11</span>
+<span class="px-md py-xs bg-surface-container-highest rounded-full text-body-sm border border-outline-variant">SQL</span>
+</div>
+<div class="flex items-center gap-xl">
+<div>
+<p class="text-outline text-label-caps mb-xs uppercase">Complexity</p>
+<p class="text-headline-sm font-headline-sm text-on-surface">8.4 / 10</p>
+</div>
+<div>
+<p class="text-outline text-label-caps mb-xs uppercase">Dependencies</p>
+<p class="text-headline-sm font-headline-sm text-on-surface">142 Items</p>
+</div>
+<div>
+<p class="text-outline text-label-caps mb-xs uppercase">Optimization</p>
+<p class="text-headline-sm font-headline-sm text-tertiary">92% Target</p>
+</div>
+</div>
+</div>
+<div class="w-1/3 bg-surface-container-lowest rounded-lg border border-outline-variant p-md hidden lg:block overflow-hidden">
+<div class="font-code-sm text-code-sm space-y-1 text-on-surface-variant opacity-60">
+<p><span class="text-primary">PROC SQL</span>;</p>
+<p class="pl-md">CREATE TABLE risk_data AS</p>
+<p class="pl-md">SELECT * FROM master_ledger</p>
+<p class="pl-md">WHERE <span class="text-secondary">exposure</span> &gt; 0.05;</p>
+<p><span class="text-primary">QUIT</span>;</p>
+<div class="h-px bg-outline-variant my-md"></div>
+<p><span class="text-tertiary">def</span> analyze_risk(data):</p>
+<p class="pl-md">df = pd.read_sql(data)</p>
+<p class="pl-md"><span class="text-secondary">return</span> df.query(<span class="text-error">"exposure &gt; 0.05"</span>)</p>
+</div>
+</div>
+</div>
+<!-- Project Grid Items -->
+<div class="col-span-12 md:col-span-4 bg-surface-container border border-outline-variant rounded-xl p-md flex flex-col hover:border-primary/50 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-surface-container-highest rounded border border-outline-variant">
+<span class="material-symbols-outlined text-primary" data-icon="database">database</span>
+</div>
+<span class="px-md py-xs bg-tertiary-container/10 text-tertiary text-body-sm rounded-full font-medium">Completed</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-xs">DataLake_ETL_Sync</h4>
+<p class="text-on-surface-variant text-body-sm mb-lg">SQLite Snapshot ID: <span class="font-mono">#SL-2910</span></p>
+<div class="mt-auto flex items-center justify-between border-t border-outline-variant pt-md">
+<div class="flex gap-xs">
+<span class="text-body-sm bg-surface-container-high px-sm py-xs rounded">SAS</span>
+<span class="text-body-sm bg-surface-container-high px-sm py-xs rounded">Py</span>
+</div>
+<p class="text-outline text-body-sm">Oct 24, 2023</p>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 bg-surface-container border border-outline-variant rounded-xl p-md flex flex-col hover:border-primary/50 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-surface-container-highest rounded border border-outline-variant">
+<span class="material-symbols-outlined text-secondary" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<span class="px-md py-xs bg-primary-container/10 text-primary text-body-sm rounded-full font-medium">Snapshot Saved</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-xs">Legacy_GL_Reporter</h4>
+<p class="text-on-surface-variant text-body-sm mb-lg">SQLite Snapshot ID: <span class="font-mono">#SL-2844</span></p>
+<div class="mt-auto flex items-center justify-between border-t border-outline-variant pt-md">
+<div class="flex gap-xs">
+<span class="text-body-sm bg-surface-container-high px-sm py-xs rounded">SAS</span>
+</div>
+<p class="text-outline text-body-sm">Oct 22, 2023</p>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 bg-surface-container border border-outline-variant rounded-xl p-md flex flex-col hover:border-primary/50 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-surface-container-highest rounded border border-outline-variant">
+<span class="material-symbols-outlined text-tertiary" data-icon="monitoring">monitoring</span>
+</div>
+<span class="px-md py-xs bg-error-container/10 text-error text-body-sm rounded-full font-medium">Flagged Issues</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-xs">Customer_Churn_Model</h4>
+<p class="text-on-surface-variant text-body-sm mb-lg">SQLite Snapshot ID: <span class="font-mono">#SL-2701</span></p>
+<div class="mt-auto flex items-center justify-between border-t border-outline-variant pt-md">
+<div class="flex gap-xs">
+<span class="text-body-sm bg-surface-container-high px-sm py-xs rounded">Python</span>
+<span class="text-body-sm bg-surface-container-high px-sm py-xs rounded">R</span>
+</div>
+<p class="text-outline text-body-sm">Oct 19, 2023</p>
+</div>
+</div>
+<!-- Detailed Project Row -->
+<div class="col-span-12 overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="text-left border-b border-outline-variant">
+<th class="py-md px-md text-label-caps text-outline font-label-caps uppercase">Project Name</th>
+<th class="py-md px-md text-label-caps text-outline font-label-caps uppercase">Technology</th>
+<th class="py-md px-md text-label-caps text-outline font-label-caps uppercase">Last Analysis</th>
+<th class="py-md px-md text-label-caps text-outline font-label-caps uppercase">Status</th>
+<th class="py-md px-md text-label-caps text-outline font-label-caps uppercase text-right">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container-high/50 transition-colors group">
+<td class="py-md px-md">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-outline" data-icon="insert_drive_file">insert_drive_file</span>
+<span class="font-bold text-on-surface">inventory_optimization_prod</span>
+</div>
+</td>
+<td class="py-md px-md">
+<div class="flex gap-sm">
+<span class="px-md py-xs bg-surface-container-high rounded text-body-sm">Python</span>
+<span class="px-md py-xs bg-surface-container-high rounded text-body-sm">Snowflake</span>
+</div>
+</td>
+<td class="py-md px-md text-on-surface-variant text-body-sm">2 days ago</td>
+<td class="py-md px-md">
+<span class="flex items-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_#4edea3]"></span>
+<span class="text-body-sm">Stable</span>
+</span>
+</td>
+<td class="py-md px-md text-right">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container-high/50 transition-colors group">
+<td class="py-md px-md">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-outline" data-icon="folder_zip">folder_zip</span>
+<span class="font-bold text-on-surface">legacy_sas_migration_batch_02</span>
+</div>
+</td>
+<td class="py-md px-md">
+<div class="flex gap-sm">
+<span class="px-md py-xs bg-surface-container-high rounded text-body-sm">SAS</span>
+<span class="px-md py-xs bg-surface-container-high rounded text-body-sm">COBOL</span>
+</div>
+</td>
+<td class="py-md px-md text-on-surface-variant text-body-sm">5 days ago</td>
+<td class="py-md px-md">
+<span class="flex items-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#d0bcff]"></span>
+<span class="text-body-sm">Archived</span>
+</span>
+</td>
+<td class="py-md px-md text-right">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (FAB) - Suppressed for Dashboard context based on prompt guidelines but can be used for 'Quick Analyze' -->
+<button class="fixed bottom-lg right-lg w-14 h-14 bg-secondary-container text-on-secondary-container rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-40 group">
+<span class="material-symbols-outlined text-headline-sm" data-icon="bolt">bolt</span>
+<span class="absolute right-full mr-md px-md py-xs bg-surface-container-highest border border-outline-variant rounded-lg text-body-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Quick AST Analysis</span>
+</button>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.bento-grid > div').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Search bar interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('w-full');
+            searchInput.parentElement.style.maxWidth = '600px';
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.style.maxWidth = '448px';
+        });
+    </script>
+</body></html>

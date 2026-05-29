@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CodeArch AI | Analysis Reports</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "graphite-gray": "#767676",
+                        "inverse-surface": "#2f3131",
+                        "inverse-primary": "#ffb4a8",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#e3e2e2",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "secondary-fixed": "#e2e2e2",
+                        "ink-black": "#000000",
+                        "surface-container-high": "#e8e8e8",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#464747",
+                        "on-primary-fixed-variant": "#930100",
+                        "outline": "#946e68",
+                        "on-secondary-container": "#646464",
+                        "on-surface": "#1a1c1c",
+                        "primary-fixed": "#ffdad4",
+                        "inverse-on-surface": "#f1f1f1",
+                        "on-primary-fixed": "#410000",
+                        "surface-bright": "#f9f9f9",
+                        "surface-variant": "#e2e2e2",
+                        "surface": "#f9f9f9",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "error": "#ba1a1a",
+                        "background": "#f9f9f9",
+                        "on-tertiary-container": "#faf8f8",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#e2e2e2",
+                        "heritage-red": "#E60000",
+                        "secondary": "#5e5e5e",
+                        "tertiary-fixed-dim": "#c7c6c6",
+                        "on-background": "#1a1c1c",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#727272",
+                        "surface-mist": "#F2F2F2",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#5f3f3a",
+                        "outline-variant": "#e9bcb5",
+                        "tertiary": "#595a5a",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#e60000",
+                        "on-primary-container": "#fff7f5",
+                        "primary": "#b70100",
+                        "surface-container": "#eeeeee",
+                        "surface-tint": "#c00000",
+                        "surface-dim": "#dadada",
+                        "canvas-white": "#FFFFFF"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "unit": "8px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "panel-sidebar": "260px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Public Sans"],
+                        "body-sm": ["Inter"],
+                        "code-snippet": ["monospace"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Public Sans"],
+                        "body-lg": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "headline-xl": ["Public Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "code-snippet": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #dadada; border-radius: 2px; }
+        .asymmetric-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 1280px) {
+            .asymmetric-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar Shell -->
+<aside class="fixed h-screen w-panel-sidebar left-0 top-0 bg-surface-container-low border-r border-surface-container-highest flex flex-col py-8 px-4 z-50">
+<div class="mb-10 px-2">
+<h1 class="font-headline-md text-ink-black font-bold">CodeArch AI</h1>
+<p class="font-body-sm text-graphite-gray">Technical Architect</p>
+</div>
+<button class="mb-10 w-full bg-ink-black text-canvas-white py-3 px-4 rounded font-bold flex items-center justify-center gap-2 hover:bg-secondary transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">add</span>
+        New Project
+    </button>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 p-3 rounded text-secondary hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-body-md">Projects</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded text-secondary hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">terminal</span>
+<span class="font-body-md">Workspace</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded text-heritage-red font-bold border-r-4 border-heritage-red bg-primary-fixed/30 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded text-secondary hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto flex items-center gap-3 p-2">
+<div class="w-10 h-10 rounded bg-surface-container-highest flex items-center justify-center border border-surface-container-highest overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBea9Wxn-cwspuQvvNkytfphTtedtNdSnOAcLJ9RT35BHwowYHCRW2aWQShqlXMrGA93cd-8_-aG92cUv_pmopEryUTPhelIoBX4TpjE-axXM5xLM-oTur7Z7lDh1-XKC9cUTjBAlEfpiVcCjfYk3BwhjE3-zQZpBBR7uyXpB5cOOiA5Vdiswy5W2sKLruZCP2Hk6Mci9Tt9e7MT8rXiy4EtK2mZq9KvtfutWqtzBj994u1Q_ORMGZE4k10uIqv2EyqsZXJA7aav_Dg"/>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md font-bold text-ink-black leading-none">Alex Chen</span>
+<span class="font-body-sm text-graphite-gray">Arch Lead</span>
+</div>
+</div>
+</aside>
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 right-0 h-16 bg-canvas-white border-b border-surface-container-highest flex justify-between items-center px-10 z-40 w-[calc(100%-260px)]">
+<div class="flex items-center gap-10">
+<nav class="flex items-center gap-6">
+<a class="font-body-sm text-graphite-gray hover:text-ink-black transition-all duration-200" href="#">Documentation</a>
+<a class="font-body-sm text-graphite-gray hover:text-ink-black transition-all duration-200" href="#">Support</a>
+<a class="font-body-sm text-graphite-gray hover:text-ink-black transition-all duration-200" href="#">API</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<input class="bg-surface-container h-9 px-4 pl-10 rounded border border-surface-container-highest focus:border-ink-black focus:ring-0 outline-none transition-all w-64 text-body-sm" placeholder="Search architecture..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-graphite-gray text-sm">search</span>
+</div>
+<button class="p-2 text-graphite-gray hover:text-ink-black transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-graphite-gray hover:text-ink-black transition-all">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-panel-sidebar pt-16 min-h-screen">
+<div class="p-10 max-w-[1600px] mx-auto">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 bg-surface-container-highest text-ink-black text-label-bold rounded uppercase tracking-wider">Technical Debt Analysis</span>
+<span class="text-graphite-gray text-body-sm">ID: ARCH-992-SEC</span>
+</div>
+<h2 class="font-headline-lg text-ink-black">Analysis Reports: <span class="text-heritage-red">Cloud Core V2</span></h2>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 bg-canvas-white hover:bg-surface-container-low px-4 py-2 rounded border border-surface-container-highest transition-colors font-bold text-body-md">
+<span class="material-symbols-outlined">download</span>
+                    Export PDF
+                </button>
+<button class="flex items-center gap-2 bg-heritage-red text-canvas-white px-6 py-2 rounded font-bold shadow-md shadow-heritage-red/10 hover:bg-primary transition-all">
+<span class="material-symbols-outlined">share</span>
+                    Share Snapshot
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="asymmetric-grid">
+<!-- Left Column: Main Data -->
+<div class="space-y-6">
+<!-- Summary Stats Card -->
+<div class="grid grid-cols-4 gap-4">
+<div class="bg-canvas-white p-6 rounded border border-surface-container-highest relative overflow-hidden group">
+<p class="text-graphite-gray text-label-bold uppercase mb-2">Total Lines</p>
+<h3 class="font-headline-md text-ink-black">1.2M</h3>
+<p class="text-secondary text-body-sm flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-sm">trending_up</span> 12% vs last
+                        </p>
+</div>
+<div class="bg-canvas-white p-6 rounded border border-surface-container-highest relative overflow-hidden group">
+<p class="text-graphite-gray text-label-bold uppercase mb-2">Risk Severity</p>
+<h3 class="font-headline-md text-heritage-red">Critical</h3>
+<p class="text-heritage-red text-body-sm flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-sm">warning</span> 14 Issues
+                        </p>
+</div>
+<div class="bg-canvas-white p-6 rounded border border-surface-container-highest relative overflow-hidden group">
+<p class="text-graphite-gray text-label-bold uppercase mb-2">Performance</p>
+<h3 class="font-headline-md text-ink-black">84/100</h3>
+<p class="text-graphite-gray text-body-sm flex items-center gap-1 mt-2">
+                            Optimized
+                        </p>
+</div>
+<div class="bg-canvas-white p-6 rounded border border-surface-container-highest relative overflow-hidden group">
+<p class="text-graphite-gray text-label-bold uppercase mb-2">Complexity</p>
+<h3 class="font-headline-md text-ink-black">Low</h3>
+<p class="text-secondary text-body-sm flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-sm">check_circle</span> 0.22 Index
+                        </p>
+</div>
+</div>
+<!-- Complex Chart Visualization -->
+<div class="bg-canvas-white p-8 rounded border border-surface-container-highest">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h4 class="font-headline-md text-ink-black">Complexity Matrix &amp; Migration Path</h4>
+<p class="text-graphite-gray text-body-sm">Analysis of circular dependencies and AST depth mapping.</p>
+</div>
+<div class="flex bg-surface-container-low p-1 rounded border border-surface-container-highest">
+<button class="px-4 py-1 bg-ink-black text-canvas-white font-bold rounded text-body-sm">AST Tree</button>
+<button class="px-4 py-1 text-graphite-gray hover:text-ink-black transition-colors rounded text-body-sm">Data Flow</button>
+</div>
+</div>
+<div class="h-80 w-full relative">
+<div class="absolute inset-0 flex items-end gap-6 px-4">
+<div class="w-full bg-surface-container-high h-[40%] border-t-4 border-ink-black relative group transition-all hover:bg-secondary/20">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-ink-black text-canvas-white px-3 py-1 rounded shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10 text-xs font-bold">Auth Module: 42%</div>
+</div>
+<div class="w-full bg-surface-container-high h-[65%] border-t-4 border-ink-black"></div>
+<div class="w-full bg-heritage-red/10 h-[90%] border-t-4 border-heritage-red"></div>
+<div class="w-full bg-surface-container-high h-[30%] border-t-4 border-ink-black"></div>
+<div class="w-full bg-surface-container-high h-[55%] border-t-4 border-secondary"></div>
+<div class="w-full bg-surface-container-high h-[75%] border-t-4 border-ink-black"></div>
+<div class="w-full bg-surface-container-high h-[45%] border-t-4 border-graphite-gray"></div>
+</div>
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="border-t border-surface-container-highest w-full h-0"></div>
+<div class="border-t border-surface-container-highest w-full h-0"></div>
+<div class="border-t border-surface-container-highest w-full h-0"></div>
+<div class="border-t border-surface-container-highest w-full h-0"></div>
+</div>
+</div>
+</div>
+<!-- Alignment Comparison Section -->
+<div class="bg-canvas-white rounded border border-surface-container-highest overflow-hidden">
+<div class="p-6 border-b border-surface-container-highest bg-surface-container-low flex items-center justify-between">
+<h4 class="font-headline-md text-ink-black flex items-center gap-2">
+<span class="material-symbols-outlined text-ink-black">verified</span>
+                            BRD Alignment Report
+                        </h4>
+<span class="text-ink-black bg-surface-container-highest px-4 py-1 rounded-full text-body-sm font-bold border border-surface-container-highest">92% Compliance</span>
+</div>
+<div class="grid grid-cols-2">
+<!-- Original Code Pattern -->
+<div class="p-6 border-r border-surface-container-highest">
+<p class="text-label-bold uppercase text-graphite-gray mb-4">Architecture Pattern (Current)</p>
+<div class="bg-surface-container-low p-4 rounded font-code-snippet text-code-snippet text-ink-black space-y-1">
+<div class="flex gap-4"><span class="text-graphite-gray">01</span> <span class="font-bold">class</span> LegacyOrderProcessor {</div>
+<div class="flex gap-4"><span class="text-graphite-gray">02</span>    <span class="text-secondary">execute</span>() {</div>
+<div class="flex gap-4 bg-error-container/20 -mx-4 px-4 border-l-4 border-heritage-red"><span class="text-graphite-gray">03</span>      <span class="text-heritage-red">direct_db_write</span>(order);</div>
+<div class="flex gap-4"><span class="text-graphite-gray">04</span>    }</div>
+<div class="flex gap-4"><span class="text-graphite-gray">05</span> }</div>
+</div>
+<div class="mt-4 p-3 bg-heritage-red/5 rounded border border-heritage-red/10">
+<p class="text-body-sm text-heritage-red font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">close</span>
+                                    Violation: Direct database access found.
+                                </p>
+</div>
+</div>
+<!-- Requirement Alignment -->
+<div class="p-6">
+<p class="text-label-bold uppercase text-graphite-gray mb-4">BRD Section 4.2 Requirements</p>
+<div class="bg-surface-container-low p-4 rounded font-body-sm text-ink-black space-y-4">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-ink-black">check_circle</span>
+<p class="font-bold">Must use Event-Sourcing pattern for all order state changes.</p>
+</div>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-ink-black">check_circle</span>
+<p class="font-bold">Data isolation via Repository Pattern is mandatory.</p>
+</div>
+<div class="flex gap-3 opacity-40">
+<span class="material-symbols-outlined">radio_button_unchecked</span>
+<p>Audit logging must be non-blocking async.</p>
+</div>
+</div>
+<div class="mt-4 p-3 bg-surface-container-highest rounded border border-surface-container-highest">
+<p class="text-body-sm text-ink-black flex items-center gap-2 font-bold">
+<span class="material-symbols-outlined text-sm">auto_fix_high</span>
+                                    Suggestion: Refactor to CloudRepository.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar / Context -->
+<div class="space-y-6">
+<!-- Snapshot History Sidebar -->
+<div class="bg-canvas-white rounded border border-surface-container-highest flex flex-col h-[calc(100vh-160px)] sticky top-6">
+<div class="p-6 border-b border-surface-container-highest">
+<h4 class="font-headline-md text-ink-black">Snapshot History</h4>
+<p class="text-graphite-gray text-body-sm">Compare previous analysis runs</p>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-4">
+<!-- Snapshot Item -->
+<div class="p-4 bg-surface-container-low border border-surface-container-highest border-l-4 border-heritage-red rounded transition-all hover:bg-canvas-white cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="font-bold text-body-md text-ink-black">Current Analysis</span>
+<span class="text-[10px] bg-heritage-red text-canvas-white px-2 rounded-full font-bold">LATEST</span>
+</div>
+<p class="text-graphite-gray text-body-sm mb-3">Today, 2:45 PM</p>
+<div class="flex items-center gap-2 text-[10px] uppercase font-bold text-ink-black">
+<span class="material-symbols-outlined text-xs">analytics</span> 92% Alignment
+                            </div>
+</div>
+<!-- Snapshot Item -->
+<div class="p-4 bg-canvas-white border border-surface-container-highest border-l-4 border-transparent rounded transition-all hover:bg-surface-container-low cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="font-bold text-body-md text-ink-black">Pre-Deployment Scan</span>
+</div>
+<p class="text-graphite-gray text-body-sm mb-3">Yesterday, 10:12 AM</p>
+<div class="flex items-center gap-2 text-[10px] uppercase font-bold text-graphite-gray">
+<span class="material-symbols-outlined text-xs">analytics</span> 78% Alignment
+                            </div>
+</div>
+<!-- Snapshot Item -->
+<div class="p-4 bg-canvas-white border border-surface-container-highest border-l-4 border-transparent rounded transition-all hover:bg-surface-container-low cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="font-bold text-body-md text-ink-black text-heritage-red">Initial Discovery</span>
+</div>
+<p class="text-graphite-gray text-body-sm mb-3">Oct 24, 2023</p>
+<div class="flex items-center gap-2 text-[10px] uppercase font-bold text-heritage-red">
+<span class="material-symbols-outlined text-xs">warning</span> 45% Alignment
+                            </div>
+</div>
+<!-- Map -->
+<div class="mt-8 pt-6 border-t border-surface-container-highest">
+<h5 class="text-label-bold text-graphite-gray mb-4 uppercase">Infrastructure Origin</h5>
+<div class="rounded border border-surface-container-highest overflow-hidden h-32 relative group">
+<img alt="Infrastructure Map" class="w-full h-full object-cover grayscale brightness-75 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxecjMtwHOGpHwl9dTvx2WyIj9M5nVTfpMTnwQdzNzmnAN0VEzMixgOot5UwFsne0kg9v3urdLJAHnHcOSoacVbk_VqG5QdCK89OAQOqW8QdxIPfYit7eBkebMnMvcOINKf7exkcQPmYaYNMm0wvhEahw4DLxso_f65fbKf9eH6xQVzmtTTvNgXS9F9zjQU5IEQmTtrsqTmGVs_9XKsiQCzLVBjh_myWGZowFNY6Ibf8L2Bj5TndSVGYEZQmA4DaQFiwMhbNIeUVsd"/>
+<div class="absolute inset-0 bg-gradient-to-t from-ink-black/80 to-transparent flex items-end p-4">
+<p class="text-canvas-white text-body-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-heritage-red">location_on</span>
+                                        US-East-1 Deployment Hub
+                                    </p>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-surface-container-highest">
+<button class="w-full bg-ink-black text-canvas-white hover:bg-secondary py-3 rounded font-bold text-body-sm transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">history</span>
+                            View Full Archive
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+    document.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            this.classList.add('opacity-80');
+            setTimeout(() => this.classList.remove('opacity-80'), 200);
+        });
+    });
+</script>
+</body></html>

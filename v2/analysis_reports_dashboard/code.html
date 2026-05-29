@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reports - CodeArch AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Public+Sans:wght@600;700;900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Public+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#e2e2e2",
+                    "primary-container": "#e60000",
+                    "ink-black": "#000000",
+                    "tertiary-fixed": "#e3e2e2",
+                    "canvas-white": "#FFFFFF",
+                    "graphite-gray": "#767676",
+                    "surface-tint": "#c00000",
+                    "tertiary-fixed-dim": "#c7c6c6",
+                    "surface": "#f9f9f9",
+                    "background": "#f9f9f9",
+                    "on-tertiary-fixed-variant": "#464747",
+                    "primary-fixed": "#ffdad4",
+                    "on-tertiary": "#ffffff",
+                    "heritage-red": "#E60000",
+                    "surface-container-highest": "#e2e2e2",
+                    "outline": "#946e68",
+                    "on-tertiary-container": "#faf8f8",
+                    "surface-variant": "#e2e2e2",
+                    "on-secondary-fixed-variant": "#474747",
+                    "inverse-surface": "#2f3131",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#930100",
+                    "on-primary-container": "#fff7f5",
+                    "surface-mist": "#F2F2F2",
+                    "outline-variant": "#e9bcb5",
+                    "surface-container": "#eeeeee",
+                    "surface-bright": "#f9f9f9",
+                    "surface-dim": "#dadada",
+                    "tertiary": "#595a5a",
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#5f3f3a",
+                    "primary-fixed-dim": "#ffb4a8",
+                    "tertiary-container": "#727272",
+                    "on-primary-fixed": "#410000",
+                    "surface-container-low": "#f3f3f3",
+                    "on-secondary-container": "#646464",
+                    "inverse-on-surface": "#f1f1f1",
+                    "secondary": "#5e5e5e",
+                    "on-tertiary-fixed": "#1b1c1c",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#e2e2e2",
+                    "inverse-primary": "#ffb4a8",
+                    "surface-container-high": "#e8e8e8",
+                    "secondary-fixed-dim": "#c6c6c6",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#1a1c1c",
+                    "primary": "#b70100",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary-fixed": "#1b1b1b",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "gutter": "24px",
+                    "unit": "8px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Public Sans"],
+                    "code-snippet": ["monospace"],
+                    "headline-lg-mobile": ["Public Sans"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Public Sans"],
+                    "body-sm": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "headline-lg": ["Public Sans"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "code-snippet": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .risk-map-cell {
+            aspect-ratio: 1 / 1;
+            transition: transform 0.2s ease;
+        }
+        .risk-map-cell:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Side Navigation Bar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-mist border-r border-graphite-gray/20 z-50 flex flex-col py-unit">
+<div class="px-6 py-8">
+<h1 class="font-headline-md text-headline-md font-bold text-ink-black">CodeArch AI</h1>
+<p class="font-label-bold text-label-bold text-secondary uppercase tracking-widest mt-1">Technical Architect</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:text-ink-black hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-bold text-label-bold">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:text-ink-black hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">terminal</span>
+<span class="font-label-bold text-label-bold">Workspace</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-canvas-white text-heritage-red border-l-4 border-heritage-red transition-all duration-150" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-bold text-label-bold">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:text-ink-black hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-bold text-label-bold">Settings</span>
+</a>
+</nav>
+<div class="px-6 py-4">
+<button class="w-full py-3 bg-heritage-red text-canvas-white font-label-bold text-label-bold rounded-lg shadow-sm active:opacity-90 transition-all">
+                New Project
+            </button>
+</div>
+<footer class="px-4 py-4 border-t border-graphite-gray/10 space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-secondary hover:text-ink-black transition-colors" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-bold text-label-bold">Documentation</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-secondary hover:text-ink-black transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-bold text-label-bold">Support</span>
+</a>
+</footer>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-64 right-0 h-16 bg-canvas-white border-b border-graphite-gray/20 z-40 flex items-center justify-between px-margin-desktop">
+<div class="flex items-center gap-8">
+<div class="relative group">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center text-graphite-gray">
+<span class="material-symbols-outlined text-sm">search</span>
+</span>
+<input class="pl-10 pr-4 py-1.5 bg-surface-mist border-none focus:ring-1 focus:ring-ink-black text-body-sm rounded-lg w-64 transition-all" placeholder="Search architecture..." type="text"/>
+</div>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="font-label-bold text-label-bold text-secondary hover:text-ink-black" href="#">Docs</a>
+<a class="font-label-bold text-label-bold text-secondary hover:text-ink-black" href="#">API Reference</a>
+<a class="font-label-bold text-label-bold text-secondary hover:text-ink-black" href="#">Status</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-secondary hover:text-heritage-red transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-secondary hover:text-heritage-red transition-all">
+<span class="material-symbols-outlined">history</span>
+</button>
+<div class="h-8 w-[1px] bg-graphite-gray/20 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="font-label-bold text-label-bold text-ink-black leading-tight">Alex Sterling</p>
+<p class="text-[10px] text-graphite-gray uppercase">Lead Architect</p>
+</div>
+<img alt="Technical Architect Profile" class="w-8 h-8 rounded-full border border-graphite-gray/20 object-cover" data-alt="A professional headshot of a senior software architect in a minimalist, high-key studio setting. The lighting is crisp and clean, reflecting a corporate and modern aesthetic. The subject is wearing a dark, tailored blazer against a neutral grey background, embodying authoritative precision and institutional trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBovgz9tzpBK8Nsfa4pCMzYq59La5_2c5EtZzgrJz_BOg1ScxRUNyEgMMUCmR4qubbJYV3nl_CYZw-B8BWQHxvz2l9y3WR8KRD47V1BG3zDBRfsrS_QLc2tvt4Crl4d8NI8QPUTiXODAoRa7AtsJEdKLaiDHIvb0ZM3lAjLOhkQvrgYc4KkAJSb5ytxo1QjfdS56QuNlKYMycmlXDfHRnR35PK3ZEI6IiUJaHP82exIfbkrIEE4etjClVKe8aHqert0J8ZRn5lEuGY3"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-margin-desktop min-h-screen max-w-[1440px] mx-auto">
+<!-- Executive Summary Header -->
+<section class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<nav class="flex items-center gap-2 text-graphite-gray mb-2">
+<span class="font-label-bold text-[10px] uppercase tracking-widest">Reports</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="font-label-bold text-[10px] uppercase tracking-widest text-ink-black">Legacy Migration</span>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-ink-black">Legacy Migration Phase 1</h2>
+<div class="flex items-center gap-4 mt-2">
+<div class="flex items-center gap-2 text-graphite-gray">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span class="text-body-sm">Analysis Date: Oct 24, 2023</span>
+</div>
+<div class="flex items-center gap-2 text-graphite-gray">
+<span class="material-symbols-outlined text-sm">rebase</span>
+<span class="text-body-sm">Branch: production-v4.2</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-8 bg-canvas-white p-6 border border-graphite-gray/20 rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-bold text-label-bold text-graphite-gray mb-1">HEALTH SCORE</span>
+<span class="font-headline-xl text-headline-xl text-heritage-red">84<span class="text-headline-md">/100</span></span>
+</div>
+<div class="w-24 h-24 relative">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-mist" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-heritage-red" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="40.2" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-heritage-red" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Key Metrics Row -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mb-10">
+<div class="bg-canvas-white p-6 border border-graphite-gray/20">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-surface-mist">
+<span class="material-symbols-outlined text-ink-black">reorder</span>
+</div>
+<span class="text-green-600 text-xs font-bold">+2.4k</span>
+</div>
+<p class="font-label-bold text-label-bold text-graphite-gray uppercase">Total Lines of Code</p>
+<h3 class="font-headline-md text-headline-md text-ink-black mt-1">142,850</h3>
+</div>
+<div class="bg-canvas-white p-6 border border-graphite-gray/20">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-surface-mist">
+<span class="material-symbols-outlined text-ink-black">account_tree</span>
+</div>
+<span class="text-heritage-red text-xs font-bold">+12%</span>
+</div>
+<p class="font-label-bold text-label-bold text-graphite-gray uppercase">Cyclomatic Complexity</p>
+<h3 class="font-headline-md text-headline-md text-ink-black mt-1">14.2</h3>
+</div>
+<div class="bg-canvas-white p-6 border border-graphite-gray/20">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-surface-mist">
+<span class="material-symbols-outlined text-ink-black">architecture</span>
+</div>
+<span class="text-green-600 text-xs font-bold">Stable</span>
+</div>
+<p class="font-label-bold text-label-bold text-graphite-gray uppercase">Maintainability Index</p>
+<h3 class="font-headline-md text-headline-md text-ink-black mt-1">76/100</h3>
+</div>
+<div class="bg-canvas-white p-6 border border-heritage-red/30 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2">
+<div class="w-2 h-2 bg-heritage-red rounded-full animate-pulse"></div>
+</div>
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-heritage-red/10">
+<span class="material-symbols-outlined text-heritage-red">warning</span>
+</div>
+</div>
+<p class="font-label-bold text-label-bold text-graphite-gray uppercase">Risk Level</p>
+<h3 class="font-headline-md text-headline-md text-heritage-red mt-1">MEDIUM-HIGH</h3>
+</div>
+</section>
+<!-- Main Dashboard Bento Grid -->
+<div class="bento-grid">
+<!-- Architectural Insights (Decomposition/Hotspots) -->
+<section class="col-span-12 lg:col-span-8 bg-canvas-white border border-graphite-gray/20 flex flex-col">
+<div class="p-6 border-b border-graphite-gray/10 flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-ink-black">Architectural Insights</h3>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-surface-mist text-label-bold font-label-bold hover:bg-surface-container transition-colors">Dependency Map</button>
+<button class="px-3 py-1 text-label-bold font-label-bold text-graphite-gray hover:text-ink-black transition-colors">Cluster View</button>
+</div>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Dependency Graph Representation -->
+<div class="relative bg-surface p-4 border border-graphite-gray/10 rounded overflow-hidden min-h-[300px] flex items-center justify-center">
+<img alt="Architecture Dependency Graph" class="opacity-40 mix-blend-multiply grayscale" data-alt="A complex architectural dependency graph visualized with sleek, thin white lines connecting geometric node points against a dark, minimalist background. The style is technical and abstract, suggesting high-precision software engineering and intricate system relationships. The color palette is monochrome with subtle red glowing nodes to indicate critical hotspots." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRB0wx1gQEvzeYXz7FKPbhy_8SFkCfnXdHvwRJtNdDkXX4sPDyI-L2fvGhTbKPvaseEg-jedbWoQ-FuMw6vv0fNFw7CHtTWYCubbS3DU06P6TPyeaF9OpwGrjt1W_mYIuLymcHxor7WlW1LDjjebwIbPMSrwMclwYgXxBSuEpXPhnPO839FyHdB8N_61klx_NzAE9HxPNZkqQyMZFehdJGYLCQdmz2wByYvNRCzrZNKHsnHzliimLnjR8WuxKOCgswYwZ3lIf8sHTR"/>
+<div class="absolute inset-0 flex items-center justify-center p-8">
+<div class="w-full h-full relative border border-dashed border-heritage-red/20">
+<div class="absolute top-1/4 left-1/4 w-12 h-12 bg-heritage-red/10 border border-heritage-red flex items-center justify-center">
+<span class="text-[10px] font-bold text-heritage-red">CORE</span>
+</div>
+<div class="absolute bottom-1/3 right-1/4 w-16 h-16 bg-ink-black/5 border border-ink-black flex items-center justify-center">
+<span class="text-[10px] font-bold">API</span>
+</div>
+<div class="absolute top-1/2 right-1/3 w-8 h-8 bg-ink-black/5 border border-ink-black flex items-center justify-center">
+<span class="text-[10px] font-bold">AUTH</span>
+</div>
+<svg class="absolute inset-0 w-full h-full pointer-events-none">
+<line stroke="#E60000" stroke-dasharray="4" stroke-width="1" x1="25%" x2="50%" y1="25%" y2="50%"></line>
+<line stroke="#000" stroke-opacity="0.2" stroke-width="1" x1="50%" x2="75%" y1="50%" y2="66%"></line>
+</svg>
+</div>
+</div>
+</div>
+<!-- Technical Debt Hotspots -->
+<div>
+<h4 class="font-label-bold text-label-bold text-graphite-gray uppercase mb-4">Technical Debt Hotspots</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 border-l-2 border-heritage-red bg-surface-mist">
+<div>
+<p class="font-label-bold text-body-sm text-ink-black">com.arch.legacy.parser</p>
+<p class="text-[10px] text-graphite-gray">Circular Dependency Detected</p>
+</div>
+<span class="bg-heritage-red/10 text-heritage-red px-2 py-1 text-[10px] font-bold">CRITICAL</span>
+</div>
+<div class="flex items-center justify-between p-3 border-l-2 border-orange-500 bg-surface-mist">
+<div>
+<p class="font-label-bold text-body-sm text-ink-black">internal.data.processing</p>
+<p class="text-[10px] text-graphite-gray">High Cognitive Complexity</p>
+</div>
+<span class="bg-orange-500/10 text-orange-500 px-2 py-1 text-[10px] font-bold">MAJOR</span>
+</div>
+<div class="flex items-center justify-between p-3 border-l-2 border-graphite-gray/40 bg-surface-mist">
+<div>
+<p class="font-label-bold text-body-sm text-ink-black">utility.logger.v1</p>
+<p class="text-[10px] text-graphite-gray">Deprecated API Usage</p>
+</div>
+<span class="bg-graphite-gray/10 text-graphite-gray px-2 py-1 text-[10px] font-bold">MINOR</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Actionable Suggestions Sidebar -->
+<section class="col-span-12 lg:col-span-4 bg-ink-black text-canvas-white flex flex-col p-8">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-heritage-red" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<h3 class="font-headline-md text-headline-md">AI Recommendations</h3>
+</div>
+<div class="space-y-6 flex-1 overflow-y-auto">
+<div class="group cursor-pointer">
+<div class="flex items-start gap-3 mb-2">
+<span class="text-heritage-red font-bold">01.</span>
+<p class="font-body-md">Refactor circular dependency in <code class="bg-white/10 px-1 rounded">Auth</code> module by introducing a shared interface layer.</p>
+</div>
+<div class="ml-8 text-xs text-graphite-gray group-hover:text-canvas-white transition-colors">Reduces coupling by 24%</div>
+</div>
+<div class="group cursor-pointer">
+<div class="flex items-start gap-3 mb-2">
+<span class="text-heritage-red font-bold">02.</span>
+<p class="font-body-md">Consolidate redundant XML parsing logic across <code class="bg-white/10 px-1 rounded">Ingestion</code> and <code class="bg-white/10 px-1 rounded">Export</code>.</p>
+</div>
+<div class="ml-8 text-xs text-graphite-gray group-hover:text-canvas-white transition-colors">Saves 1,400 LOC</div>
+</div>
+<div class="group cursor-pointer">
+<div class="flex items-start gap-3 mb-2">
+<span class="text-heritage-red font-bold">03.</span>
+<p class="font-body-md">Migrate legacy thread-pooling to modern <code class="bg-white/10 px-1 rounded">Virtual Threads</code> in processing engine.</p>
+</div>
+<div class="ml-8 text-xs text-graphite-gray group-hover:text-canvas-white transition-colors">Potential performance boost: 30%</div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-white/10">
+<button class="w-full flex items-center justify-between p-4 border border-heritage-red text-heritage-red hover:bg-heritage-red hover:text-white transition-all">
+<span class="font-label-bold text-label-bold">GENERATE REFACTOR BLUEPRINT</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Risk Heatmap -->
+<section class="col-span-12 lg:col-span-7 bg-canvas-white border border-graphite-gray/20 p-6">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="font-headline-md text-headline-md text-ink-black">Risk Heatmap</h3>
+<p class="text-body-sm text-graphite-gray mt-1">Distribution of code volatility vs. complexity</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 bg-heritage-red"></div>
+<span class="text-[10px] font-label-bold">High Risk</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 bg-surface-mist"></div>
+<span class="text-[10px] font-label-bold">Stable</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-10 gap-2 overflow-hidden">
+<!-- Grid generated for visualization -->
+<script>
+                        const gridContainer = document.currentScript.parentElement;
+                        const modules = ['Ingestion', 'Processing', 'Export', 'Core', 'UI'];
+                        for (let i = 0; i < 50; i++) {
+                            const opacity = Math.random();
+                            const color = opacity > 0.7 ? 'bg-heritage-red' : (opacity > 0.4 ? 'bg-heritage-red/40' : 'bg-surface-mist');
+                            const div = document.createElement('div');
+                            div.className = `risk-map-cell ${color} border border-white/20`;
+                            gridContainer.appendChild(div);
+                        }
+                    </script>
+</div>
+<div class="flex justify-between mt-4">
+<span class="text-[10px] font-label-bold text-graphite-gray">LOW COMPLEXITY</span>
+<span class="text-[10px] font-label-bold text-graphite-gray uppercase">High Complexity</span>
+</div>
+</section>
+<!-- Export Actions -->
+<section class="col-span-12 lg:col-span-5 bg-surface-mist border border-graphite-gray/20 p-6 flex flex-col justify-center">
+<h3 class="font-label-bold text-label-bold text-ink-black uppercase mb-6 tracking-widest">Reporting &amp; Delivery</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<button class="flex flex-col items-center justify-center p-6 bg-canvas-white border border-graphite-gray/20 hover:border-heritage-red transition-all group">
+<span class="material-symbols-outlined text-3xl text-graphite-gray group-hover:text-heritage-red mb-3">picture_as_pdf</span>
+<span class="font-label-bold text-label-bold">Download PDF Report</span>
+<span class="text-[10px] text-graphite-gray mt-1">Full detailed analysis</span>
+</button>
+<button class="flex flex-col items-center justify-center p-6 bg-canvas-white border border-graphite-gray/20 hover:border-heritage-red transition-all group">
+<span class="material-symbols-outlined text-3xl text-graphite-gray group-hover:text-heritage-red mb-3">account_tree</span>
+<span class="font-label-bold text-label-bold">Arch Blueprint</span>
+<span class="text-[10px] text-graphite-gray mt-1">Export SVG/JSON map</span>
+</button>
+</div>
+<button class="mt-4 py-3 text-secondary hover:text-ink-black font-label-bold text-label-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">share</span>
+<span>Share with stakeholders</span>
+</button>
+</section>
+</div>
+<!-- Footer Margin Space -->
+<div class="h-24"></div>
+</main>
+<!-- Floating Global Action Button -->
+<div class="fixed bottom-margin-desktop right-margin-desktop z-50">
+<button class="w-14 h-14 bg-heritage-red text-canvas-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+</button>
+</div>
+<script>
+        // Simple Micro-interaction for the health score pulse
+        const pulseEffect = () => {
+            const dot = document.querySelector('.animate-pulse');
+            if (dot) {
+                dot.style.opacity = dot.style.opacity === '1' ? '0.4' : '1';
+            }
+        };
+        setInterval(pulseEffect, 1000);
+    </script>
+</body></html>

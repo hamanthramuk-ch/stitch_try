@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>CodeArch AI - Help Center</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Public+Sans:wght@400;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "graphite-gray": "#767676",
+                        "inverse-surface": "#2f3131",
+                        "inverse-primary": "#ffb4a8",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#e3e2e2",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "secondary-fixed": "#e2e2e2",
+                        "ink-black": "#000000",
+                        "surface-container-high": "#e8e8e8",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#464747",
+                        "on-primary-fixed-variant": "#930100",
+                        "outline": "#946e68",
+                        "on-secondary-container": "#646464",
+                        "on-surface": "#1a1c1c",
+                        "primary-fixed": "#ffdad4",
+                        "inverse-on-surface": "#f1f1f1",
+                        "on-primary-fixed": "#410000",
+                        "surface-bright": "#f9f9f9",
+                        "surface-variant": "#e2e2e2",
+                        "surface": "#f9f9f9",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "error": "#ba1a1a",
+                        "background": "#f9f9f9",
+                        "on-tertiary-container": "#faf8f8",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#e2e2e2",
+                        "heritage-red": "#E60000",
+                        "secondary": "#5e5e5e",
+                        "tertiary-fixed-dim": "#c7c6c6",
+                        "on-background": "#1a1c1c",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#727272",
+                        "surface-mist": "#F2F2F2",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#5f3f3a",
+                        "outline-variant": "#e9bcb5",
+                        "tertiary": "#595a5a",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#e60000",
+                        "on-primary-container": "#fff7f5",
+                        "primary": "#b70100",
+                        "surface-container": "#eeeeee",
+                        "surface-tint": "#c00000",
+                        "surface-dim": "#dadada",
+                        "canvas-white": "#FFFFFF",
+                        "panel-sidebar": "280px"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "unit": "8px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "panel-sidebar": "280px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Public Sans"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Public Sans"],
+                        "headline-xl": ["Public Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #dadada;
+            border-radius: 10px;
+        }
+        .sidebar-item-active {
+            background-color: #f3f3f3;
+            border-right: 3px solid #E60000;
+            color: #1a1c1c;
+            font-weight: 600;
+        }
+        .step-number {
+            -webkit-text-stroke: 1px #E60000;
+            color: transparent;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .glass-card {
+            background: #ffffff;
+            border: 1px solid #eeeeee;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface overflow-hidden">
+<div class="flex h-screen w-full">
+    <!-- Sidebar from SCREEN_12 -->
+    <aside class="flex flex-col h-full bg-surface-container-lowest border-r border-surface-container w-panel-sidebar shrink-0">
+        <!-- Branding & Create New -->
+        <div class="p-md space-y-md">
+            <div class="flex items-center gap-xs px-sm">
+                <span class="material-symbols-outlined text-heritage-red font-bold">architecture</span>
+                <div>
+                    <h1 class="font-headline-md text-ink-black text-lg leading-tight">CodeArch AI</h1>
+                    <p class="text-[10px] text-graphite-gray uppercase tracking-widest font-bold">Technical Architect</p>
+                </div>
+            </div>
+            <button class="w-full flex items-center justify-center gap-sm py-sm border border-surface-container text-ink-black font-bold rounded-lg hover:bg-surface-container-low transition-all active:scale-[0.98]">
+                <span class="material-symbols-outlined text-[20px]">add</span>
+                <span class="">New Project</span>
+            </button>
+        </div>
+        <!-- Project History List -->
+        <div class="flex-1 overflow-y-auto custom-scrollbar px-sm">
+            <div class="mt-md mb-xs px-md">
+                <p class="text-[10px] font-bold text-graphite-gray uppercase tracking-widest">Recent Projects</p>
+            </div>
+            <nav class="space-y-[2px]">
+                <a class="sidebar-item-active flex items-center gap-md px-md py-sm rounded-lg transition-colors group" href="#">
+                    <span class="material-symbols-outlined text-[18px]">folder</span>
+                    <span class="font-body-sm truncate">Legacy Migration</span>
+                </a>
+                <a class="flex items-center gap-md px-md py-sm rounded-lg text-secondary hover:bg-surface-container-low transition-colors group" href="#">
+                    <span class="material-symbols-outlined text-[18px] text-graphite-gray">folder</span>
+                    <span class="font-body-sm truncate">Financial Risk Model</span>
+                </a>
+                <a class="flex items-center gap-md px-md py-sm rounded-lg text-secondary hover:bg-surface-container-low transition-colors group" href="#">
+                    <span class="material-symbols-outlined text-[18px] text-graphite-gray">folder</span>
+                    <span class="font-body-sm truncate">DataLake Sync</span>
+                </a>
+                <a class="flex items-center gap-md px-md py-sm rounded-lg text-secondary hover:bg-surface-container-low transition-colors group" href="#">
+                    <span class="material-symbols-outlined text-[18px] text-graphite-gray">folder</span>
+                    <span class="font-body-sm truncate">Cloud Infra Audit</span>
+                </a>
+                <a class="flex items-center gap-md px-md py-sm rounded-lg text-secondary hover:bg-surface-container-low transition-colors group" href="#">
+                    <span class="material-symbols-outlined text-[18px] text-graphite-gray">folder</span>
+                    <span class="font-body-sm truncate">API Gateway Redesign</span>
+                </a>
+            </nav>
+        </div>
+        <div class="mt-auto p-md border-t border-surface-container"></div>
+    </aside>
+
+    <!-- Main Content Canvas -->
+    <main class="flex-1 flex flex-col min-w-0 bg-background">
+        <!-- Header from SCREEN_12 -->
+        <header class="flex justify-between items-center h-16 px-xl bg-canvas-white border-b border-surface-container shrink-0">
+            <div class="flex items-center gap-xl">
+                <div class="flex gap-md">
+                    <a class="font-body-sm text-graphite-gray hover:text-heritage-red transition-all duration-200" href="#">Documentation</a>
+                    <a class="font-body-sm text-graphite-gray hover:text-heritage-red transition-all duration-200" href="#">Support</a>
+                    <a class="font-body-sm text-graphite-gray hover:text-heritage-red transition-all duration-200" href="#">API</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-md">
+                <div class="relative group">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-graphite-gray text-[18px]">search</span>
+                    <input class="bg-surface-container-low border border-surface-container rounded-lg py-1.5 pl-10 pr-4 text-body-sm focus:outline-none focus:ring-1 focus:ring-heritage-red w-64" placeholder="Search architecture..." type="text"/>
+                </div>
+                <span class="material-symbols-outlined text-graphite-gray cursor-pointer hover:text-heritage-red transition-colors">notifications</span>
+                <span class="material-symbols-outlined text-heritage-red cursor-pointer hover:bg-error-container/20 p-1 rounded-full transition-all relative after:content-[''] after:absolute after:top-0 after:right-0 after:w-2 after:h-2 after:bg-error after:rounded-full">help_outline</span>
+                <div class="relative group flex items-center gap-sm cursor-pointer ml-md">
+                    <div class="relative">
+                        <img alt="User Profile" class="w-8 h-8 rounded-full bg-surface-container-highest border border-surface-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjj52hI2cHq_VO82Bu38gZv3WPR04jR0YgmxJyiuXFzh9xDQveXsSI-A9F0y99GxPU2EkdDRCJ-49FM5qyLqL-WsOchnpsNUDu1-DNQTx5kVJUXWVLZy15WB3hdPh7mE6obCsxx5FHPdCojk1y1HZbT0I6Kmwim3dz5D1g6Mp0a0iJG-q380pIDIuYjWLZIhp7UdxxPmKKeX-yauACaV5HNpbn911p8K0jYNYiLUSuFSMzAH3nTD32ngOrhp0u886ZRHAwTKYAN88n"/>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Onboarding Content from SCREEN_17 -->
+        <div class="flex-1 overflow-y-auto p-xl custom-scrollbar">
+            <div class="max-w-[1280px] mx-auto px-10 py-12">
+                <!-- Hero Introduction -->
+                <section class="mb-16">
+                    <div class="flex items-start justify-between">
+                        <div class="max-w-2xl">
+                            <span class="text-heritage-red font-label-bold tracking-[0.2em] uppercase block mb-4">Onboarding &amp; Excellence</span>
+                            <h2 class="font-headline-xl text-ink-black mb-6">How to Use CodeArch AI</h2>
+                            <p class="font-body-lg text-graphite-gray leading-relaxed">
+                                CodeArch AI is an elite technical architect assistant designed for deep analysis and strategic code migration. By leveraging advanced decomposition models, we transform complex legacy codebases into modern architectural blueprints with institutional precision.
+                            </p>
+                        </div>
+                        <div class="w-32 h-32 border-2 border-heritage-red flex items-center justify-center rounded-xl opacity-20">
+                            <span class="material-symbols-outlined text-[64px] text-heritage-red">architecture</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step-by-Step Guide: Bento Grid Layout -->
+                <section class="mb-20">
+                    <div class="bento-grid">
+                        <!-- Step 1 -->
+                        <div class="col-span-12 md:col-span-4 bg-canvas-white border border-outline-variant/20 p-8 flex flex-col h-full hover:border-heritage-red/30 transition-all shadow-sm">
+                            <div class="flex justify-between items-start mb-8">
+                                <span class="step-number font-headline-xl opacity-50">01</span>
+                                <span class="material-symbols-outlined text-heritage-red bg-heritage-red/5 p-3 rounded-lg">create_new_folder</span>
+                            </div>
+                            <h3 class="font-headline-md text-ink-black mb-4">Create a Project</h3>
+                            <p class="text-graphite-gray font-body-md mb-6 flex-grow">
+                                Initiate your journey by defining the project's identity. Set the scope, business domain, and target architecture to provide context for the AI analysis engine.
+                            </p>

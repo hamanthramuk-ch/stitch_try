@@ -1,0 +1,353 @@
+import React, { useState } from 'react';
+import { 
+  FolderOpen, 
+  Terminal, 
+  BarChart2, 
+  Settings, 
+  Plus, 
+  Search, 
+  Bell, 
+  HelpCircle, 
+  AlertTriangle,
+  ChevronRight,
+  FileText,
+  Archive,
+  Link,
+  Cpu,
+  ShieldCheck,
+  ArrowRight,
+  User,
+  ExternalLink
+} from 'lucide-react';
+
+// Reusable Components based on Design System: Architectural Precision
+
+const Sidebar = () => (
+  <aside className="w-64 border-r border-gray-200 h-screen flex flex-col bg-white sticky top-0">
+    <div className="p-6">
+      <div className="flex items-center gap-2 mb-8">
+        <div className="w-8 h-8 bg-[#e60000] flex items-center justify-center rounded">
+          <Cpu size={20} className="text-white" />
+        </div>
+        <div>
+          <h1 className="font-bold text-lg leading-none">CodeArch AI</h1>
+          <p className="text-[10px] text-gray-500 uppercase tracking-wider mt-1">Technical Architect</p>
+        </div>
+      </div>
+      
+      <button className="w-full bg-white border border-gray-200 py-2.5 rounded-md flex items-center justify-center gap-2 text-sm font-medium hover:bg-gray-50 transition-colors mb-8 shadow-sm">
+        <Plus size={16} />
+        New Project
+      </button>
+
+      <nav className="space-y-6">
+        <div>
+          <h2 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Main Menu</h2>
+          <ul className="space-y-1">
+            {[
+              { icon: FolderOpen, label: 'Projects', active: true },
+              { icon: Terminal, label: 'Workspace' },
+              { icon: BarChart2, label: 'Reports' },
+              { icon: Settings, label: 'Settings' },
+            ].map((item) => (
+              <li key={item.label}>
+                <a 
+                  href="#" 
+                  className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors ${
+                    item.active ? 'text-[#e60000] bg-red-50 font-semibold' : 'text-gray-600 hover:bg-gray-50'
+                  }`}
+                >
+                  <item.icon size={18} />
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h2 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Recent Projects</h2>
+          <ul className="space-y-1">
+            {['Legacy Migration', 'Financial Risk Model', 'DataLake Sync', 'Cloud Infra Audit'].map((project) => (
+              <li key={project}>
+                <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-md truncate">
+                  <FolderOpen size={16} className="text-gray-400 shrink-0" />
+                  {project}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </aside>
+);
+
+const Header = () => (
+  <header className="h-16 border-b border-gray-200 bg-white px-8 flex items-center justify-between sticky top-0 z-10">
+    <nav className="flex items-center gap-6">
+      <a href="#" className="text-sm font-medium text-[#e60000]">Documentation</a>
+      <a href="#" className="text-sm font-medium text-gray-500 hover:text-gray-900">Support</a>
+      <a href="#" className="text-sm font-medium text-gray-500 hover:text-gray-900">API</a>
+    </nav>
+
+    <div className="flex items-center gap-4">
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+        <input 
+          type="text" 
+          placeholder="Search architecture..." 
+          className="bg-gray-100 border-none rounded-md py-2 pl-10 pr-4 text-sm w-64 focus:ring-2 focus:ring-[#e60000]/20 transition-all"
+        />
+      </div>
+      <button className="p-2 text-gray-500 hover:bg-gray-50 rounded-full relative">
+        <Bell size={20} />
+        <span className="absolute top-2 right-2 w-2 h-2 bg-[#e60000] rounded-full border-2 border-white"></span>
+      </button>
+      <button className="p-2 text-[#e60000] hover:bg-red-50 rounded-full">
+        <HelpCircle size={20} />
+      </button>
+      <div className="flex items-center gap-3 pl-2 border-l border-gray-200 ml-2">
+        <div className="text-right">
+          <p className="text-xs font-bold leading-none">Admin Account</p>
+          <p className="text-[10px] text-gray-500 mt-1">Enterprise Tier</p>
+        </div>
+        <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden border border-gray-300">
+          <User size={20} className="text-gray-500" />
+        </div>
+      </div>
+    </div>
+  </header>
+);
+
+const SecurityBanner = () => (
+  <div className="bg-red-50 border border-[#e60000]/20 rounded-lg p-4 flex gap-4 items-start mb-8">
+    <div className="bg-[#e60000] rounded p-1 text-white mt-0.5">
+      <AlertTriangle size={16} />
+    </div>
+    <div className="flex-1">
+      <h3 className="text-sm font-bold text-[#e60000] uppercase tracking-wider mb-1">Critical Security & Quality Notice</h3>
+      <div className="grid md:grid-cols-2 gap-4 text-sm text-[#e60000]/80">
+        <p className="flex items-center gap-2">
+          <ShieldCheck size={14} className="shrink-0" />
+          AI output should be validated before propagation.
+        </p>
+        <p className="flex items-center gap-2">
+          <AlertTriangle size={14} className="shrink-0" />
+          Do not upload CID data. Only upload permitted information to AI system.
+        </p>
+      </div>
+    </div>
+  </div>
+);
+
+const App = () => {
+  return (
+    <div className="flex bg-[#f9f9f9] min-h-screen font-sans text-gray-900 selection:bg-[#e60000]/10 selection:text-[#e60000]">
+      <Sidebar />
+      
+      <main className="flex-1 flex flex-col min-w-0">
+        <Header />
+        
+        <div className="p-10 max-w-6xl mx-auto w-full">
+          {/* Section Header */}
+          <div className="mb-10">
+            <span className="text-[#e60000] text-xs font-bold uppercase tracking-[0.2em]">Onboarding & Excellence</span>
+            <h2 className="text-3xl font-bold mt-2">How to Use CodeArch AI</h2>
+            <p className="text-gray-500 mt-4 max-w-3xl leading-relaxed">
+              CodeArch AI is an elite technical architect assistant designed for deep analysis and strategic code migration. 
+              By leveraging advanced decomposition models, we transform complex legacy codebases into modern 
+              architectural blueprints with institutional precision.
+            </p>
+          </div>
+
+          <SecurityBanner />
+
+          {/* Steps Grid */}
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
+            {[
+              {
+                num: '01',
+                title: 'Create a Project',
+                desc: 'Initiate your journey by defining the project\'s identity. Set the scope, business domain, and target architecture to provide context for the AI analysis engine.',
+                bullets: ['Define technical scope', 'Select target framework'],
+                icon: <FileText size={20} className="text-[#e60000]" />
+              },
+              {
+                num: '02',
+                title: 'Upload Source Code',
+                desc: 'Choose from three secure ingestion methods to bring your logic into the environment. Our platform handles varied complexities with structural integrity.',
+                methods: [
+                  { label: 'Individual Files', icon: <FileText size={16} /> },
+                  { label: 'Zip Archive', icon: <Archive size={16} /> },
+                  { label: 'Git URL', icon: <Link size={16} /> },
+                ],
+                warning: 'Ensure all PII and CID (Client Identifiable Data) are scrubbed before upload. CodeArch AI uses anonymized analysis tokens.'
+              },
+              {
+                num: '03',
+                title: 'Run Analysis',
+                desc: 'Trigger the proprietary CodeArch engine. The system automatically detects scripting languages, performs structural decomposition, and maps dependency graphs in real-time.',
+                progress: 84,
+                icon: <Cpu size={20} className="text-[#e60000]" />
+              },
+              {
+                num: '04',
+                title: 'Review Reports',
+                desc: 'Interpret the results within the Analysis Workspace. Access architectural suggestions, risk heatmaps, and automated migration paths generated by the AI.',
+                tags: ['Structural Audit', 'Migration Strategy', 'Risk Map'],
+                icon: <BarChart2 size={20} className="text-[#e60000]" />
+              }
+            ].map((step, i) => (
+              <div key={i} className="bg-white border border-gray-200 rounded-xl p-8 flex flex-col hover:shadow-md transition-all">
+                <div className="flex justify-between items-start mb-6">
+                  <span className="text-[#e60000] font-bold text-sm">{step.num}</span>
+                  <div className="p-2 bg-red-50 rounded-md">
+                    {step.icon}
+                  </div>
+                </div>
+                
+                <h3 className="text-xl font-bold mb-4">{step.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed mb-6">{step.desc}</p>
+                
+                {step.bullets && (
+                  <ul className="space-y-2 mt-auto">
+                    {step.bullets.map((b, bi) => (
+                      <li key={bi} className="flex items-center gap-2 text-sm text-gray-700">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#e60000]" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {step.methods && (
+                  <div className="space-y-4 mt-auto">
+                    <div className="grid grid-cols-3 gap-2">
+                      {step.methods.map((m, mi) => (
+                        <div key={mi} className="bg-gray-50 border border-gray-200 p-3 rounded-md flex flex-col items-center gap-2 hover:border-[#e60000]/30 transition-colors cursor-pointer group">
+                          <div className="text-gray-400 group-hover:text-[#e60000]">{m.icon}</div>
+                          <span className="text-[10px] font-bold uppercase tracking-tighter text-gray-600">{m.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="bg-red-50/50 border-l-2 border-[#e60000] p-3">
+                      <p className="text-[11px] leading-relaxed text-[#e60000]/80">
+                        <span className="font-bold">CID Data Safety Warning:</span> {step.warning}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {step.progress && (
+                  <div className="mt-auto pt-6 border-t border-gray-100">
+                    <div className="flex justify-between items-end mb-2">
+                      <div className="flex gap-1">
+                        <div className="w-1 h-1 bg-gray-400 rounded-full animate-pulse" />
+                        <div className="w-1 h-1 bg-gray-400 rounded-full animate-pulse delay-75" />
+                        <div className="w-1 h-1 bg-gray-400 rounded-full animate-pulse delay-150" />
+                      </div>
+                      <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Analyzing Modules... {step.progress}%</span>
+                    </div>
+                    <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
+                      <div className="h-full bg-[#e60000] transition-all duration-1000" style={{ width: `${step.progress}%` }} />
+                    </div>
+                  </div>
+                )}
+
+                {step.tags && (
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {step.tags.map(tag => (
+                      <span key={tag} className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-[10px] font-medium uppercase tracking-wider">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Workflow Section */}
+          <div className="bg-white border border-gray-200 rounded-xl p-12 text-center mb-12">
+            <h3 className="text-lg font-bold mb-10">The Integrated Architectural Workflow</h3>
+            <div className="flex justify-center items-center gap-8">
+              {[
+                { label: 'Ingestion', icon: <Plus size={24} /> },
+                { label: 'Decomposition', icon: <Settings size={24} /> },
+                { label: 'AI Inference', icon: <Cpu size={24} /> },
+                { label: 'Blueprints', icon: <FileText size={24} /> },
+              ].map((item, i) => (
+                <React.Fragment key={i}>
+                  <div className="flex flex-col items-center gap-4 group">
+                    <div className="w-16 h-16 rounded-xl border border-gray-200 flex items-center justify-center text-gray-400 group-hover:text-[#e60000] group-hover:border-[#e60000]/30 group-hover:bg-red-50 transition-all cursor-default">
+                      {item.icon}
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500 group-hover:text-gray-900">{item.label}</span>
+                  </div>
+                  {i < 3 && <ChevronRight className="text-gray-200" size={24} />}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+
+          {/* Footer Grid */}
+          <div className="grid md:grid-cols-2 gap-12 pt-12 border-t border-gray-200">
+            <div>
+              <div className="flex items-center gap-2 text-[#e60000] mb-6">
+                <Plus size={20} />
+                <h4 className="font-bold uppercase tracking-wider text-sm">Quick Tips</h4>
+              </div>
+              <div className="space-y-6">
+                <div>
+                  <h5 className="font-bold text-sm mb-2">Sharing Projects</h5>
+                  <p className="text-sm text-gray-500 leading-relaxed">
+                    Invite collaborators via the 'Access Management' panel. Permissions can be granularly controlled from Read-Only to Architect levels.
+                  </p>
+                </div>
+                <div>
+                  <h5 className="font-bold text-sm mb-2">Batch Processing</h5>
+                  <p className="text-sm text-gray-500 leading-relaxed">
+                    Uploading multiple zip files simultaneously allows the engine to analyze shared dependencies across different sub-modules.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <div className="flex items-center gap-2 text-[#e60000] mb-6">
+                <ShieldCheck size={20} />
+                <h4 className="font-bold uppercase tracking-wider text-sm">Safety & Governance</h4>
+              </div>
+              <div className="bg-white border border-gray-100 rounded-xl p-8 shadow-sm">
+                <p className="text-sm text-gray-500 leading-relaxed mb-6">
+                  CodeArch AI adheres to global institutional standards for data privacy. All analysis results are encrypted at rest and in transit.
+                </p>
+                <a href="#" className="inline-flex items-center gap-2 text-[#e60000] text-xs font-bold uppercase tracking-wider hover:gap-3 transition-all">
+                  Access Safety Guidelines
+                  <ArrowRight size={16} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Global Footer */}
+        <footer className="mt-auto border-t border-gray-200 bg-white p-8">
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-xs text-gray-400">
+              © 2024 CodeArch AI Technical Services. All rights reserved.
+            </p>
+            <div className="flex gap-6">
+              <a href="#" className="text-xs font-bold text-gray-400 hover:text-gray-900 uppercase tracking-widest">Privacy Policy</a>
+              <a href="#" className="text-xs font-bold text-gray-400 hover:text-gray-900 uppercase tracking-widest">Terms of Service</a>
+              <a href="#" className="text-xs font-bold text-gray-400 hover:text-gray-900 uppercase tracking-widest">GDPR Compliance</a>
+            </div>
+          </div>
+        </footer>
+      </main>
+    </div>
+  );
+};
+
+export default App;

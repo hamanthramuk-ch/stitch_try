@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Safety &amp; Compliance Guidelines | CodeArch AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Public+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f9f9f9;
+            color: #1a1c1c;
+            -webkit-font-smoothing: antialiased;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .canvas-bg {
+            background-image: radial-gradient(circle at 2px 2px, rgba(118, 118, 118, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface-variant": "#5f3f3a",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#ffb4a8",
+                      "on-tertiary-fixed-variant": "#464747",
+                      "secondary-fixed-dim": "#c6c6c6",
+                      "primary": "#b70100",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#e2e2e2",
+                      "graphite-gray": "#767676",
+                      "on-background": "#1a1c1c",
+                      "tertiary-fixed-dim": "#c7c6c6",
+                      "secondary-container": "#e2e2e2",
+                      "on-primary-fixed-variant": "#930100",
+                      "ink-black": "#000000",
+                      "surface-tint": "#c00000",
+                      "on-secondary-fixed-variant": "#474747",
+                      "surface-bright": "#f9f9f9",
+                      "tertiary-container": "#727272",
+                      "secondary": "#5e5e5e",
+                      "primary-container": "#e60000",
+                      "inverse-surface": "#2f3131",
+                      "on-secondary-fixed": "#1b1b1b",
+                      "surface-container": "#eeeeee",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed": "#ffdad4",
+                      "on-primary-fixed": "#410000",
+                      "surface-container-highest": "#e2e2e2",
+                      "inverse-on-surface": "#f1f1f1",
+                      "outline": "#946e68",
+                      "canvas-white": "#FFFFFF",
+                      "tertiary": "#595a5a",
+                      "surface-container-high": "#e8e8e8",
+                      "on-error": "#ffffff",
+                      "heritage-red": "#E60000",
+                      "background": "#f9f9f9",
+                      "surface-dim": "#dadada",
+                      "on-tertiary": "#ffffff",
+                      "on-surface": "#1a1c1c",
+                      "inverse-primary": "#ffb4a8",
+                      "on-primary": "#ffffff",
+                      "surface-container-low": "#f3f3f3",
+                      "on-tertiary-container": "#faf8f8",
+                      "on-primary-container": "#fff7f5",
+                      "on-tertiary-fixed": "#1b1c1c",
+                      "outline-variant": "#e9bcb5",
+                      "on-secondary-container": "#646464",
+                      "secondary-fixed": "#e2e2e2",
+                      "surface-mist": "#F2F2F2",
+                      "surface": "#f9f9f9",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed": "#e3e2e2",
+                      "error": "#ba1a1a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-desktop": "40px",
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "unit": "8px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": ["Public Sans"],
+                      "headline-lg": ["Public Sans"],
+                      "label-bold": ["Inter"],
+                      "headline-xl": ["Public Sans"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Public Sans"],
+                      "code-snippet": ["monospace"],
+                      "body-md": ["Inter"],
+                      "body-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "code-snippet": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="canvas-bg font-body-md text-on-surface min-h-screen">
+<!-- Top Navigation Bar (Modified for focused task) -->
+<header class="flex justify-between items-center h-16 px-margin-desktop w-full bg-surface-container-lowest border-b border-outline-variant/30 sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<a class="flex items-center gap-2 group transition-all duration-200 hover:text-primary" href="#">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
+<span class="font-label-bold text-label-bold uppercase tracking-widest text-secondary group-hover:text-primary">Back to Workspace</span>
+</a>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-graphite-gray" data-icon="security">security</span>
+<span class="font-label-bold text-label-bold text-ink-black">COMPLIANCE HUB</span>
+</div>
+<img alt="Admin Avatar" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A professional headshot of a senior technical architect with a neutral expression, clean background, high-key lighting, and professional corporate attire. The aesthetic is minimalist and high-end, matching a premium code analysis platform's design system with clean white and red accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW5MABrlAl1WFeDLOg5W7y-8xZZtHUgzX-_hConQDwxbLe7lJUPk0heHqrykxMiSiHT-VxD9_J0fqQfdM1czJ7foW-GijXKp2fIcUtw-4cmyHSUS3N2GtPwLPWqpOklFwy-2QCnt-9GAgaRt0klEuae4h0vWbcVy8DFt9xH0U-9in1JNCRJV-Nwged7m5mYTJrgOLrtXqSBK4kqQvBUcwxGuAxcx_uVGA6ebFx8z7RtpxGuM9o1RXkg40SyKKRXJSSlHVLv28ryZRg"/>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto px-margin-desktop py-12">
+<!-- Hero Section -->
+<section class="mb-16">
+<div class="flex flex-col gap-2">
+<span class="font-label-bold text-label-bold text-primary tracking-[0.2em] uppercase">Security Standard 4.0</span>
+<h1 class="font-headline-xl text-headline-xl text-ink-black">Data Security &amp; AI Safety</h1>
+<p class="max-w-2xl font-body-lg text-body-lg text-secondary mt-4">
+                    Guidelines for architectural integrity, data handling, and regulatory alignment within the CodeArch AI environment.
+                </p>
+</div>
+</section>
+<!-- Bento Grid Layout -->
+<div class="bento-grid">
+<!-- Critical Alert: Data Privacy (Spans 8) -->
+<div class="col-span-12 lg:col-span-8 bg-canvas-white border border-primary/20 p-8 flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 -mr-16 -mt-16 rounded-full blur-3xl transition-all duration-500 group-hover:scale-150"></div>
+<div>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary scale-125" data-icon="warning" data-weight="fill" style="font-variation-settings: 'FILL' 1;">warning</span>
+<h2 class="font-headline-md text-headline-md text-ink-black">Data Privacy</h2>
+</div>
+<div class="bg-primary/5 border-l-4 border-primary p-6 mb-8">
+<p class="font-headline-md text-headline-md text-primary font-bold italic">
+                            "Do not upload CID data. Only upload permitted information to AI system."
+                        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-secondary">
+<div>
+<h3 class="font-label-bold text-label-bold text-ink-black mb-2 uppercase">Prohibited Content</h3>
+<ul class="space-y-2 font-body-sm text-body-sm list-disc ml-4">
+<li>Customer Identifiable Data (CID)</li>
+<li>Personally Identifiable Information (PII)</li>
+<li>Unencrypted production secrets</li>
+<li>Classified institutional internal memos</li>
+</ul>
+</div>
+<div>
+<h3 class="font-label-bold text-label-bold text-ink-black mb-2 uppercase">Allowed Content</h3>
+<ul class="space-y-2 font-body-sm text-body-sm list-disc ml-4">
+<li>Sanitized code snippets</li>
+<li>Publicly documented API structures</li>
+<li>Architectural diagrams (redacted)</li>
+<li>Non-sensitive technical documentation</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats/Compliance Badge (Spans 4) -->
+<div class="col-span-12 lg:col-span-4 bg-ink-black p-8 text-canvas-white flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-6xl mb-6 text-primary" data-icon="verified_user">verified_user</span>
+<h3 class="font-headline-md text-headline-md mb-2">ISO/IEC 27001</h3>
+<p class="font-body-sm text-body-sm opacity-70 mb-8">Certified Security Management Systems for Technical Code Architecture.</p>
+<div class="w-full h-[1px] bg-canvas-white/20 mb-8"></div>
+<div class="grid grid-cols-2 gap-4 w-full">
+<div>
+<div class="font-headline-lg text-headline-lg">99.9%</div>
+<div class="font-label-bold text-[10px] opacity-60 uppercase">Uptime Privacy</div>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg">256</div>
+<div class="font-label-bold text-[10px] opacity-60 uppercase">AES Encryption</div>
+</div>
+</div>
+</div>
+<!-- Validation Protocol (Spans 12) -->
+<div class="col-span-12 bg-canvas-white border border-outline-variant/30 p-8">
+<div class="flex flex-col md:flex-row gap-12">
+<div class="md:w-1/3">
+<h2 class="font-headline-md text-headline-md text-ink-black mb-4">Validation Protocol</h2>
+<p class="font-body-md text-body-md text-secondary mb-6">
+                            AI-generated architectural suggestions must undergo a multi-stage validation before being propagated to production repositories.
+                        </p>
+<button class="bg-primary text-canvas-white px-8 py-3 font-label-bold text-label-bold uppercase tracking-widest hover:opacity-90 transition-all active:scale-95 flex items-center gap-2">
+                            Download Full Protocol
+                            <span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+</button>
+</div>
+<div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-6">
+<!-- Step 1 -->
+<div class="p-6 bg-surface-mist flex flex-col gap-4">
+<div class="w-10 h-10 bg-ink-black text-canvas-white flex items-center justify-center font-bold">01</div>
+<h4 class="font-label-bold text-label-bold text-ink-black uppercase">Automated Scan</h4>
+<p class="font-body-sm text-body-sm text-secondary">Initial check against known vulnerabilities and style-guide violations.</p>
+</div>
+<!-- Step 2 -->
+<div class="p-6 bg-surface-mist flex flex-col gap-4">
+<div class="w-10 h-10 bg-primary text-canvas-white flex items-center justify-center font-bold">02</div>
+<h4 class="font-label-bold text-label-bold text-ink-black uppercase">Architect Review</h4>
+<p class="font-body-sm text-body-sm text-secondary">Manual validation by a Senior Architect to ensure logical soundness.</p>
+</div>
+<!-- Step 3 -->
+<div class="p-6 bg-surface-mist flex flex-col gap-4">
+<div class="w-10 h-10 bg-ink-black text-canvas-white flex items-center justify-center font-bold">03</div>
+<h4 class="font-label-bold text-label-bold text-ink-black uppercase">Propagation</h4>
+<p class="font-body-sm text-body-sm text-secondary">Final commit to the staging environment for secondary testing.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Visual Asset: Security Architecture (Spans 7) -->
+<div class="col-span-12 lg:col-span-7 bg-surface-container-low min-h-[400px] relative overflow-hidden flex items-center justify-center">
+<img alt="Architecture Diagram" class="w-full h-full object-cover mix-blend-multiply opacity-80" data-alt="A sophisticated architectural diagram showing secure data flow between an AI engine and a corporate cloud infrastructure. The visual style is highly technical, using clean thin lines, monochromatic gray tones with bright heritage red highlights for secure nodes. High-key lighting and a sense of vast digital space provide a professional, authoritative mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCbDP-VgLhMpiLjyIH72zBh09Wor7tg8PeP5Iw2lrS4pwt_ZrNbr5DTfx6jb5YNiFMUBson2Am9-JQ1bK0G3Tp7silgXPiGLMbhvLFumzLvxYBJagqsGtSAu4GmrvcJr7oa3NjczvET8PiSE2k9A3j2Ouv2aK8f8ABxAQ_dvfzcTGf3dl0q2TgYq5ZScOezEacnJWbfEVxcNGT62wWHiB7YAqykPrvmuEzccAyLqfQbYhsTEaQU15HoBytAd6urUwTRQ7AWB-0Y2lF"/>
+<div class="absolute bottom-8 left-8 bg-canvas-white/90 backdrop-blur-md p-6 border border-outline-variant/30 max-w-sm">
+<h5 class="font-label-bold text-label-bold text-ink-black mb-1 uppercase">Infrastructure Layer</h5>
+<p class="font-body-sm text-body-sm text-secondary">All AI queries are proxied through a private gateway with localized data masking.</p>
+</div>
+</div>
+<!-- Reporting & Support (Spans 5) -->
+<div class="col-span-12 lg:col-span-5 bg-canvas-white border border-outline-variant/30 p-8 flex flex-col gap-6">
+<h2 class="font-headline-md text-headline-md text-ink-black">Incident Reporting</h2>
+<p class="font-body-md text-body-md text-secondary">
+                    If you suspect a breach or an accidental upload of prohibited data, contact the Compliance Team immediately.
+                </p>
+<div class="space-y-4">
+<div class="flex items-center gap-4 p-4 border border-outline-variant/20 hover:bg-surface-mist transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-primary" data-icon="mail">mail</span>
+<div>
+<div class="font-label-bold text-label-bold text-ink-black">compliance@codearch.ai</div>
+<div class="font-body-sm text-body-sm text-secondary">Standard response &lt; 2 hours</div>
+</div>
+<span class="material-symbols-outlined ml-auto opacity-0 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 p-4 border border-outline-variant/20 hover:bg-surface-mist transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-primary" data-icon="phone_in_talk">phone_in_talk</span>
+<div>
+<div class="font-label-bold text-label-bold text-ink-black">+1 (800) SEC-CODE</div>
+<div class="font-body-sm text-body-sm text-secondary">24/7 Urgent Integrity Line</div>
+</div>
+<span class="material-symbols-outlined ml-auto opacity-0 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant/20">
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-4 h-4 rounded border-graphite-gray text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-secondary">I have read and acknowledge the 4.0 Safety Guidelines.</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Footer Note -->
+<footer class="mt-16 text-center">
+<p class="font-label-bold text-label-bold text-graphite-gray/60 uppercase tracking-widest">
+                CodeArch AI Integrity Dashboard © 2024 Institutional Technology Group
+            </p>
+</footer>
+</main>
+<script>
+        // Micro-interactions for button and interactive elements
+        document.querySelectorAll('button, a, label').forEach(el => {
+            el.addEventListener('mousedown', () => el.style.transform = 'scale(0.98)');
+            el.addEventListener('mouseup', () => el.style.transform = 'scale(1)');
+            el.addEventListener('mouseleave', () => el.style.transform = 'scale(1)');
+        });
+
+        // Simple visibility observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-4');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.bento-grid > div').forEach(card => {
+            card.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-4');
+            observer.observe(card);
+        });
+    </script>
+</body></html>
